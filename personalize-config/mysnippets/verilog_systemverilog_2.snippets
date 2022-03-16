@@ -1,0 +1,383 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+# if statement
+snippet if
+if (${1}) begin
+${0}
+end
+# If/else statements
+snippet ife
+if (${1}) begin
+${2}
+end
+else begin
+${3}
+end
+# Else if statement
+snippet eif
+else if (${1}) begin
+${0}
+end
+#Else statement
+snippet el
+else begin
+${0}
+end
+# While statement
+snippet wh
+while (${1}) begin
+${0}
+end
+# Repeat Loop
+snippet rep
+repeat (${1}) begin
+${0}
+end
+# Case statement
+	snippet case
+case (${1:/* variable */})
+	${2:/* value */}: begin
+	${3}
+	end
+	default: begin
+	${4}
+	end
+	endcase
+# CaseZ statement
+	snippet casez
+casez (${1:/* variable */})
+	${2:/* value */}: begin
+	${3}
+	end
+	default: begin
+	${4}
+	end
+	endcase
+# Always block
+	snippet al
+	always @(${1:/* sensitive list */}) begin
+	${0}
+	end
+# Module block
+	snippet mod
+	module ${1:`vim_snippets#Filename('$1', 'name')`} (${2});
+	${0}
+	endmodule
+# For
+	snippet for
+	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) begin
+	${4}
+	end
+# Forever
+	snippet forev
+	forever begin
+	${0}
+	end
+# Function
+	snippet fun
+	function ${1:void} ${2:name}(${3});
+	${0}
+endfunction: $2
+# Task
+snippet task
+task ${1:name}(${2});
+${0}
+endtask: $1
+# Initial
+snippet ini
+initial begin
+${0}
+end
+# typedef struct packed
+snippet tdsp
+typedef struct packed {
+	int ${2:data};
+} ${1:`vim_snippets#Filename('$1_t', 'name')`};
+# typedef eum
+snippet tde
+typedef enum ${2:logic[15:0]}
+{
+	${3:REG = 16'h0000}
+} ${1:my_dest_t};
+
+#module
+snippet module
+module ${1:ModuleName} (
+		${2://Parameter}
+		);
+${3://Code}
+endmodule
+
+#parameter
+snippet pa
+parameter ${1:S0} = ${2:2'b00};
+${3}
+
+#always block
+snippet al
+always @(${1:*}) begin
+${2://Code}
+end
+
+#if block
+snippet if
+if (${1:/*Condition*/}) begin
+${2://Code}
+end
+#ifel block
+snippet ifel
+if (${1:/*Condition*/}) begin
+${2://Code}
+end else begin
+${3://Code}
+end
+#el block
+snippet el
+else begin
+${1://Code}
+end
+#eli block
+snippet eli
+else if (${1:/*Condition*/}) begin
+${2://Code}
+end
+
+#assign statement
+snippet as
+assign ${1:Out} = ${2:(In == 1)?(1):(0)};
+${3}
+
+#case block
+snippet case
+case(${1:State}) begin
+${2:default}: begin
+${3://Code}
+end
+endcase
+
+#header
+snippet header
+//-----------------------------------------------------
+// Design Name : ${1:Mux}
+// File Name : ${2:Mux}.v
+// Function : ${3:Testing}
+// Coder    : hydai
+//-----------------------------------------------------
+
+#timescale 1 ns/100 ps
+snippet time
+`timescale 1 ns/100 ps
+#initial block
+snippet init
+initial begin
+${1:#0 //do something}
+end
+#test bench
+snippet test
+module ${1:TestBench};
+endmodule // End of ${1:TestBench}
+#dump
+snippet dump
+initial begin
+$fsdbDumpfile("${1:FileName}.fsdb");
+$fsdbDumpvars;
+end
+
+# a verilog header
+snippet head
+//
+//File: ${1:`expand('%:t')`}
+//Device: ${2:EP2C35}
+//Created: ${3: `strftime("%c")`}
+//Description: ${4:blablabla}
+//Revisions: ${5:listed below}
+//
+# the revision details
+snippet rev
+
+//`strftime("%c")`: ${1:created}
+# module extract
+snippet mod
+module ${1:name_of_module}
+(
+ ${2:input}
+ );
+endmodule
+# module with parameters
+snippet mp
+module ${1:name_of_module}
+#(
+		//parameter declaration
+		parameter
+ )
+(
+ ${2:input}
+ );
+endmodule
+# initial block
+snippet ini
+initial
+begin
+${1:/*statements*/}
+end
+# begin-end pair
+snippet beg
+begin
+${1:/*statements*/}
+end
+# fork-join pair
+snippet fo
+fork
+${1:/*statements*/}
+join
+# a wire variables declare
+snippet wire
+wire [${2:7}:${1:0}] ${3:/*variables*/};
+# a reg variables declare
+snippet reg
+reg [${2:7}:${1:0}] ${3:/*variables*/};
+# ports declare
+snippet input
+input [${2:7}:${1:0}] ${3:/*variables*/};
+# ports declare
+snippet output
+output [${2:7}:${1:0}] ${3:/*variables*/};
+# ports declare
+snippet inout
+inout [${2:7}:${1:0}] ${3:/*variables*/};
+# module inst boost
+snippet inst a autoinst snip
+${1:name_of_module} m$1
+(/*autoinst*/);
+# inst with parameters
+snippet ip
+${1:name_of_module}
+#(/*autoinstparam*/)
+m$1
+(/*autoinst*/);
+
+# else if statement
+# snippet eif
+#	else if (${1} ${2:=}= ${3})
+#	begin
+#		${4:/*statements*/}
+#	end
+# if statement
+	snippet if
+if (${1:a} ${2:=}= ${3:b})
+	begin
+	${4:/*statements*/}
+	end
+# assign statement
+	snippet ass
+	assign ${1} = ${2};
+# always block statement
+	snippet alw a combinational always block
+always @(${1:/*autosense*/})
+	begin
+	${2:/*statements*/}
+	end
+	snippet alw a clk triggered always block
+always @(${1:pos}edge ${2:clk})
+	begin
+	${3:/*statements*/}
+	end
+	snippet alw a clk triggered always block with reset signal
+always @(${1:pos}edge ${2:clk} or ${3:neg}edge ${4:rst_n})
+	begin
+if (!$4)
+	begin
+	${5:/*autoreset*/}
+	end
+	else
+	begin
+	${6:/*statements*/}
+	end
+	end
+# time scale statement
+	snippet ts
+	`timescale 1ns/${1:100ps}
+# include statement
+	snippet inc
+	`include "${1:define}.v"
+# else block
+	snippet else
+	else
+	begin
+	${1}
+	end
+# an inc snip
+	snippet acc
+	${1:var} <= $1 + ${2:8}'d1;
+# state machine snip
+	snippet sm
+	//state reg
+	(* syn_encoding = "safe" *)reg [${1:7}:0] ns_$2, cs_${2:mmm};
+//state parameters
+localparam
+${5:sIDLE} = 0,
+	always @(posedge ${3:clk} or negedge ${4:rst_n})
+if (!$4)
+	cs_$2 <= $5;
+	else
+	cs_$2 <= ns_$2;
+
+always @(*)
+	begin
+	ns_$2 = cs_$2;
+case (cs_$2)
+	$5:
+	default:
+	ns_$2 = $5;
+	endcase
+	end
+# parameterized bit oprand
+	snippet p0
+{(${1:pWIDTH}){1'b0}};
+snippet p1
+{{(${1:pWIDTH}-1){1'b0}}, 1'b1};
+# Altera Synthesis Attributes
+	snippet sa full case
+(* full_case *)
+	snippet sa parallel case
+(* parallel_case *)
+	snippet sa keep
+(* keep *)
+	snippet sa preserve
+(* preserve *)
+	snippet sa noprune
+(* noprune *)
+	snippet sa encoding
+	(* syn_encoding = "safe" *)
+# generate...endgenerate
+	snippet generate
+	generate
+	$1
+	endgenerate
+# genvar i
+	snippet genvar
+	genvar $1
+# end of verilog snippets
