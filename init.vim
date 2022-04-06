@@ -31,6 +31,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'luochen1990/rainbow'
 Plug 'Chiel92/vim-autoformat'
+Plug 'PhilRunninger/nerdtree-visual-selection'
 
 call plug#end()
 
@@ -45,6 +46,8 @@ set number relativenumber
 set noswapfile
 "set number
 set cursorline
+"set rulerformat=%l,%v
+"set ruler
 set tabstop=4
 set shiftwidth=4
 set hlsearch
@@ -64,6 +67,7 @@ set clipboard=unnamedplus
 "set foldmethod=syntax
 set nocompatible
 set ai
+set autoread
 
 "let g:UltiSnipsSnippetsDir = "~\AppData\Local\nvim\plugged\vim-snippets"
 "let g:UltiSnipsSnippetDirectories=["mysnippets"]
@@ -74,7 +78,7 @@ set ai
 "let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 " 使用 <C-l> 觸發程式碼片段擴展
-imap <C-Tab> <Plug>(coc-snippets-expand)
+imap <Tab> <Plug>(coc-snippets-expand)
 " 使用 <C-j> 用於程式碼片段的可視佔位符的選擇文本
 vmap <C-j> <Plug>(coc-snippets-select)
 
@@ -89,7 +93,7 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 "nmap <C-b> :NERDTreeToggle<CR>
-nmap <C-b> :NERDTreeToggle<CR><Esc>R<Esc> " auto refresh
+nmap <C-b> :NERDTreeToggle<CR><Esc><Esc> " auto refresh
 
 " open NERDTree automatically
 autocmd StdinReadPre * let s:std_in=1
@@ -104,21 +108,36 @@ filetype plugin indent on    " 启用自动补全
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
-inoremap jk <ESC>
+"inoremap jk <ESC>
 inoremap ( ()<Esc>i
 inoremap " ""<Esc>i
 inoremap ' ''<Esc>i
 inoremap [ []<Esc>i
 
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-d> <DELETE>
+inoremap <C-y> <CR>
+inoremap <C-e> <ESC>
+inoremap <C-u> <Esc>ui
+"nmap <S-ENTER> ki<CR><ESC>j
+"nmap <S-ENTER> i<CR><ESC>
+nmap <ENTER> a<CR><ESC>
+"map <C-;> <Esc>::
+
 "inoremap U <C-r>
 nnoremap U <C-r>
 imap <C-BS> <C-W>
 
-imap <Esc>\cia
-map  <Esc>\ci
+imap  <Esc>\cia
+nmap  \ci
+let g:NERDCompactSexyComs = 1                     "支持多行注释。
 
 nmap da <Esc>ggdG
 nmap ya <Esc>ggyG
+nmap va <Esc>gg0vG$
 
 "map <C-l> <C-w>l
 
@@ -134,6 +153,38 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 noremap <C-F> :Prettier<CR>
 "inoremap <C-F> :Prettier<CR>
+
+"display col line
+" RulerStr() comes from http://www.vanhemert.co.uk/vim/vimacros/ruler2.vim
+"function! RulerStr()
+"let columns = &columns
+"let inc = 0
+"let str = ""
+"while (inc < columns)
+"let inc10 = inc / 10 + 1
+"let buffer = "."
+"if (inc10 > 9)
+"let buffer = ""
+"endif
+"let str .= "....+..." . buffer . inc10
+"let inc += 10
+"endwhile
+"let str = strpart(str, 0, columns)
+"return str
+"endfunction
+
+"let s:saved_stl = {}
+"function! s:ToggleRuler()
+"let buf = bufnr('%')
+"if has_key(s:saved_stl, buf)
+"let &l:stl = s:saved_stl[buf]
+"unlet s:saved_stl[buf]
+"else
+"let s:saved_stl[buf] = &l:stl
+"setlocal stl=%{RulerStr()}
+"endif
+"endfunction
+"nnoremap <F1> :call <sid>ToggleRuler()<cr>
 
 "------personal(verilog)
 "function ten2two(numTen)
@@ -212,6 +263,9 @@ imap <C-v> <Esc>pi
 "au BufWrite * :Autoformat
 noremap <C-f> :w<CR>:Autoformat<CR>
 inoremap <C-f> <Esc>:w<CR>:Autoformat<CR>a
+
+"let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+let g:NERDCustomDelimiters = { 'do': { 'left': '-'} }
 
 set cindent
 "colorscheme codedark
@@ -373,7 +427,7 @@ let g:airline#extensions#tabline#formatter = 'default'
 " navegação entre os buffers
 nnoremap <M-Right> :bn<cr>
 nnoremap <M-Left> :bp<cr>
-"nnoremap <c-x> :bp \|bd #<cr>
+nnoremap <C-F4> :bp \|bd #<cr>
 
 let g:ale_completion_enabled = 0
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}

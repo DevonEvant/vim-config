@@ -1,3 +1,23 @@
+#`include 
+snippet `include
+\`include "${1}" 
+endsnippet
+
+#`define
+snippet `define
+\`define ${1} ${2}
+endsnippet
+
+#localparam
+snippet localparam
+localparam ${0} = ${1};
+endsnippet
+
+#signed
+snippet signed
+signed
+endsnippet
+
 #posedge
 snippet posedge
 posedge ${1}
@@ -135,9 +155,12 @@ endsnippet
 
 # Function
 snippet fun
-	function ${1:void} ${2:name}(${3});
+	function ${1:type} ${2:name};
 		${0}
-	endfunction: $2
+		begin
+			${3}
+		end
+	endfunction
 endsnippet
 
 # Task
@@ -360,7 +383,7 @@ endsnippet
 
 # ports declare
 snippet input
-	input [${2:7}:${1:0}] ${3:/*variables*/};
+	input ${1} ${2};
 endsnippet
 
 # ports declare 
@@ -518,7 +541,7 @@ endsnippet
 # generate...endgenerate
 snippet generate
 	generate
-		${1}
+		genvar	${1} ;
 	endgenerate
 endsnippet
 
