@@ -68,6 +68,9 @@ set clipboard=unnamedplus
 set nocompatible
 set ai
 set autoread
+set nocindent
+set ft=nasm
+filetype plugin indent on
 
 "let g:UltiSnipsSnippetsDir = "~\AppData\Local\nvim\plugged\vim-snippets"
 "let g:UltiSnipsSnippetDirectories=["mysnippets"]
@@ -122,9 +125,19 @@ inoremap <C-d> <DELETE>
 inoremap <C-y> <CR>
 inoremap <C-e> <ESC>
 inoremap <C-u> <Esc>ui
+
+nmap <C-s> <Esc>:w<CR>
+nmap <C-s>a <Esc>:wa<CR>
+inoremap <C-s> <Esc>:w<CR>i
+inoremap <C-s>a <Esc>:wa<CR>i
+
 "nmap <S-ENTER> ki<CR><ESC>j
-"nmap <S-ENTER> i<CR><ESC>
+nmap i<ENTER> i<CR><ESC>
+nmap I<ENTER> I<CR><ESC>
+nmap A<ENTER> A<CR><ESC>
 nmap <ENTER> a<CR><ESC>
+nmap d<ENTER> j^i<Backspace><ESC>
+nmap di<ENTER> k^i<Backspace><ESC>
 "map <C-;> <Esc>::
 
 "inoremap U <C-r>
@@ -139,7 +152,9 @@ nmap da <Esc>ggdG
 nmap ya <Esc>ggyG
 nmap va <Esc>gg0vG$
 
-"map <C-l> <C-w>l
+nmap <C-w>qa <Esc>:qa<CR>
+nmap <C-w>qa1 <Esc>:qa!<CR>
+
 
 colorscheme gruvbox
 hi Normal ctermfg=252 ctermbg=none
@@ -427,7 +442,7 @@ let g:airline#extensions#tabline#formatter = 'default'
 " navegação entre os buffers
 nnoremap <M-Right> :bn<cr>
 nnoremap <M-Left> :bp<cr>
-nnoremap <C-F4> :bp \|bd #<cr>
+nnoremap <F4> :bp \|bd #<cr>
 
 let g:ale_completion_enabled = 0
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
