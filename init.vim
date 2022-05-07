@@ -1,37 +1,38 @@
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 
-Plug 'morhetz/gruvbox'
-Plug 'scrooloose/nerdtree'
-Plug 'preservim/nerdtree'
+
+"Plug 'SirVer/ultisnips'
+"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }"
+Plug 'Chiel92/vim-autoformat'
+Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+Plug 'dense-analysis/ale'
+Plug 'honza/vim-snippets'
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+Plug 'junegunn/vim-easy-align'
+Plug 'luochen1990/rainbow'
+Plug 'mattn/emmet-vim'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 Plug 'preservim/nerdcommenter'
-Plug 'junegunn/vim-easy-align'
-
-Plug 'dense-analysis/ale'
-Plug 'mattn/emmet-vim'
-Plug 'tsony-tsonev/nerdtree-git-plugin'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
-Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }"
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'sheerun/vim-polyglot'
+Plug 'preservim/nerdtree'
+Plug 'puremourning/vimspector'
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'Yggdroot/indentLine'
-Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tomasiser/vim-code-dark'
+Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'vhda/verilog_systemverilog.vim'
-"Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'luochen1990/rainbow'
-Plug 'Chiel92/vim-autoformat'
-Plug 'PhilRunninger/nerdtree-visual-selection'
 
 call plug#end()
 
@@ -83,12 +84,12 @@ filetype plugin indent on
 " 使用 <C-l> 觸發程式碼片段擴展
 imap <Tab> <Plug>(coc-snippets-expand)
 " 使用 <C-j> 用於程式碼片段的可視佔位符的選擇文本
-vmap <C-j> <Plug>(coc-snippets-select)
+"vmap <C-j> <Plug>(coc-snippets-select)
 
 " 使用 <C-j> 跳轉到下一個佔位符，coc.nvim 預設值
-let g:coc_snippet_next = '<S-Tab>'
+let g:coc_snippet_next = '<Tab>'
 " 使用 <C-k> 要跳轉到上一個佔位符，coc.nvim 預設值
-let g:coc_snippet_prev = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
 
 
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -128,8 +129,10 @@ inoremap <C-u> <Esc>ui
 
 nmap <C-s> <Esc>:w<CR>
 nmap <C-s>a <Esc>:wa<CR>
+nmap <C-s>% <Esc>:w<CR>:so %<CR>
 inoremap <C-s> <Esc>:w<CR>i
 inoremap <C-s>a <Esc>:wa<CR>i
+inoremap <C-s>% <Esc>:w<CR>:so %<CR>
 
 "nmap <S-ENTER> ki<CR><ESC>j
 nmap i<ENTER> i<CR><ESC>
@@ -432,6 +435,54 @@ nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>i
 
+
+let g:ale_completion_enabled = 0
+let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
+
+
+" navegação entre os buffers
+nnoremap <M-Right> :bn<cr>
+nnoremap <M-Left> :bp<cr>
+nnoremap <F4> :bp \|bd #<cr>
+
+
+" 設置切換tab的快捷鍵 <\> + <i> 切換到第i個 tab
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+" 設置切換tab的快捷鍵 <\> + <-> 切換到前一個 tab
+nmap <leader>- <Plug>AirlineSelectPrevTab
+" 設置切換tab的快捷鍵 <\> + <+> 切換到后一個 tab
+nmap <leader>+ <Plug>AirlineSelectNextTab
+" 設置切換tab的快捷鍵 <\> + <q> 退出當前的 tab
+nmap <leader>q :bp<cr>:bd #<cr>
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"let g:airline_symbols.linenr = "☰" " current line
+"let g:airline_symbols.maxlinenr = " ln" "maxline
+"let g:airline_symbols.branch = " BR"
+"let g:airline_symbols.readonly = "R-"
+"let g:airline_symbols.dirty = "DT"
+"let g:airline_symbols.crypt = "CR"  
+
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
+
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -439,10 +490,22 @@ let g:airline_statusline_ontop=0
 let g:airline_theme='base16_twilight'
 
 let g:airline#extensions#tabline#formatter = 'default'
-" navegação entre os buffers
-nnoremap <M-Right> :bn<cr>
-nnoremap <M-Left> :bp<cr>
-nnoremap <F4> :bp \|bd #<cr>
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#keymap#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_format = {
+       \ '0': '0 ',
+       \ '1': '1 ',
+       \ '2': '2 ',
+       \ '3': '3 ',
+       \ '4': '4 ',
+       \ '5': '5 ',
+       \ '6': '6 ',
+       \ '7': '7 ',
+       \ '8': '8 ',
+       \ '9': '9 '
+       \}
 
-let g:ale_completion_enabled = 0
-let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
+
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
