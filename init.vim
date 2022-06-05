@@ -13,8 +13,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'dense-analysis/ale'
+Plug 'easymotion/vim-easymotion'
 Plug 'honza/vim-snippets'
+Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
@@ -34,6 +38,8 @@ Plug 'vhda/verilog_systemverilog.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'simrat39/symbols-outline.nvim'
+
 call plug#end()
 
 
@@ -42,6 +48,7 @@ call plug#end()
 "------------------------
 
 let g:python3_host_prog = 'C:\Users\ZHorn\scoop\apps\pyenv\current\pyenv-win\versions\3.9.6\python.exe'
+
 set encoding=utf8
 set number relativenumber
 set noswapfile
@@ -71,6 +78,7 @@ set ai
 set autoread
 set nocindent
 set ft=nasm
+"set foldmethod=indent
 filetype plugin indent on
 
 "let g:UltiSnipsSnippetsDir = "~\AppData\Local\nvim\plugged\vim-snippets"
@@ -445,6 +453,22 @@ nnoremap <M-Right> :bn<cr>
 nnoremap <M-Left> :bp<cr>
 nnoremap <F4> :bp \|bd #<cr>
 
+"Easymotion comfiger
+let g:EasyMotion_do_mapping = 0
+map <leader>f <Plug>(easymotion-bd-f)
+map <leader>s <Plug>(easymotion-s2)
+map <Leader>L <Plug>(easymotion-bd-jk)
+map <Leader>w <Plug>(easymotion-bd-w)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
 
 " 設置切換tab的快捷鍵 <\> + <i> 切換到第i個 tab
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -459,7 +483,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " 設置切換tab的快捷鍵 <\> + <-> 切換到前一個 tab
 nmap <leader>- <Plug>AirlineSelectPrevTab
 " 設置切換tab的快捷鍵 <\> + <+> 切換到后一個 tab
-nmap <leader>+ <Plug>AirlineSelectNextTab
+nmap <leader>= <Plug>AirlineSelectNextTab
 " 設置切換tab的快捷鍵 <\> + <q> 退出當前的 tab
 nmap <leader>q :bp<cr>:bd #<cr>
 
@@ -509,3 +533,6 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 
 
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+
+
