@@ -13,9 +13,8 @@
     },
     "suggest.noselect": false,
 
-    "snippets.userSnippetsDirectory": "C:/Users/ZHorn/AppData/Local/nvim/personalize-config/mysnippets",
+    "snippets.userSnippetsDirectory": "~/.config/nvim/personalize-config/mysnippets",
 
-    "python.pythonPath":"C:/Users/ZHorn/scoop/apps/pyenv/current/pyenv-win/versions/3.9.6/python.exe",
 
     "coc.preferences.formatOnSaveFiletypes": [
         "javascript",

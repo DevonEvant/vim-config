@@ -1,14 +1,14 @@
 
-call plug#begin('~/AppData/Local/nvim/plugged')
+call plug#begin("~/.config/nvim/plugged")
 
 
 "Plug 'SirVer/ultisnips'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }"
 Plug 'Chiel92/vim-autoformat'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Yggdroot/indentLine'
+"Plug 'PhilRunninger/nerdtree-visual-selection'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
@@ -24,16 +24,16 @@ Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
-Plug 'preservim/nerdcommenter'
+"Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
+Plug 'scrooloose/nerdtree'
 Plug 'puremourning/vimspector'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tomasiser/vim-code-dark'
-Plug 'tsony-tsonev/nerdtree-git-plugin'
+"Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -42,12 +42,31 @@ Plug 'simrat39/symbols-outline.nvim'
 
 call plug#end()
 
+" Sets only once the value of g:env to the running environment
+" from romainl
+" https://gist.github.com/romainl/4df4cde3498fada91032858d7af213c2
+function! Config_setEnv() abort
+    if exists('g:Env')
+        return
+    endif
+    if has('win64') || has('win32') || has('win16')
+        let g:Env = 'WINDOWS'
+    else
+       let g:Env = toupper(substitute(system('uname'), '\n', '', ''))
+    endif
+endfunction
+
+call Config_setEnv()
 
 "------------------------
 "-----system setting-----
 "------------------------
 
-let g:python3_host_prog = 'C:\Users\ZHorn\scoop\apps\pyenv\current\pyenv-win\versions\3.9.6\python.exe'
+
+if (g:Env =~# 'LINUX')
+    "let g:python3_host_prog = '/usr/bin/python'
+"    let g:NERDTreeGitStatusWithFlags = 1
+endif
 
 set encoding=utf8
 set number relativenumber
@@ -81,6 +100,7 @@ set ft=nasm
 "set foldmethod=indent
 filetype plugin indent on
 
+
 "let g:UltiSnipsSnippetsDir = "~\AppData\Local\nvim\plugged\vim-snippets"
 "let g:UltiSnipsSnippetDirectories=["mysnippets"]
 "let g:UltiSnipsSnippetDirectories=["mysnippets","UltiSnips"]
@@ -99,13 +119,18 @@ let g:coc_snippet_next = '<Tab>'
 " 使用 <C-k> 要跳轉到上一個佔位符，coc.nvim 預設值
 let g:coc_snippet_prev = '<S-Tab>'
 
-
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
             \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 "nmap <C-b> :NERDTreeToggle<CR>
-nmap <C-b> :NERDTreeToggle<CR><Esc><Esc> " auto refresh
+nmap <C-b> :NERDTreeToggle<CR>
+"nmap <C-b> :Vex
+"let g:netrw_liststyle = 3
+"点击I键，可以显示或隐藏Netrw顶端的横幅（Banner）。例如以下命令，将隐藏横幅：
+"let g:netrw_banner = 0
+"使用以下命令，可以设置文件浏览器的宽度，为窗口的25%：
+let g:netrw_winsize = 25
 
 " open NERDTree automatically
 autocmd StdinReadPre * let s:std_in=1
@@ -117,8 +142,8 @@ filetype indent on           " 针对不同的文件类型采用不同的缩进�
 filetype plugin on           " 针对不同的文件类型加载对应的插件
 filetype plugin indent on    " 启用自动补全
 
-vmap ++ <plug>NERDCommenterToggle
-nmap ++ <plug>NERDCommenterToggle
+"vmap ++ <plug>NERDCommenterToggle
+"nmap ++ <plug>NERDCommenterToggle
 
 "inoremap jk <ESC>
 inoremap ( ()<Esc>i
@@ -155,8 +180,8 @@ nmap di<ENTER> k^i<Backspace><ESC>
 nnoremap U <C-r>
 imap <C-BS> <C-W>
 
-imap  <Esc>\cia
-nmap  \ci
+"imap  <Esc>\cia
+"nmap  \ci
 let g:NERDCompactSexyComs = 1                     "支持多行注释。
 
 nmap da <Esc>ggdG
@@ -169,6 +194,8 @@ nmap <C-w>qa1 <Esc>:qa!<CR>
 
 colorscheme gruvbox
 hi Normal ctermfg=252 ctermbg=none
+
+"finish
 
 "
 " Use <Tab> and <S-Tab> to navigate the completion list
@@ -211,12 +238,6 @@ noremap <C-F> :Prettier<CR>
 "endif
 "endfunction
 "nnoremap <F1> :call <sid>ToggleRuler()<cr>
-
-"------personal(verilog)
-"function ten2two(numTen)
-
-"echom "Meow!"
-"endfunction
 
 "------rainbow
 let g:rainbow_active = 1
@@ -536,3 +557,20 @@ let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
 
 
+
+
+"""""""""""""""""""""""""""""
+" Later use in another file "
+"""""""""""""""""""""""""""""
+
+" I can call this function before every environment specific block with the
+" early return branch.
+"if (g:Env =~# 'WINDOWS')
+    " Enable Windows specific settings/plugins
+"else if (g:Env =~# 'LINUX')
+    " Enable Linux specific settings/plugins
+"else if (g:Env =~# 'DARWIN')
+    " Enable MacOS specific settings/plugins
+"else
+    " Other cases I can't think of like MINGW
+"endif
