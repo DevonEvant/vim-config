@@ -1,13 +1,23 @@
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 
+" nerdtree
+Plug 'preservim/nerdtree'
+Plug 'scrooloose/nerdtree'
+"Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'preservim/nerdcommenter'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'tsony-tsonev/nerdtree-git-plugin'
+
+" view
+Plug 'morhetz/gruvbox'
+"Plug 'ellisonleao/gruvbox.nvim'
 
 "Plug 'SirVer/ultisnips'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }"
 Plug 'Chiel92/vim-autoformat'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
@@ -22,21 +32,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
-Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
-Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
 Plug 'puremourning/vimspector'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tomasiser/vim-code-dark'
-Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+
 
 Plug 'simrat39/symbols-outline.nvim'
 
@@ -47,7 +53,16 @@ call plug#end()
 "-----system setting-----
 "------------------------
 
-let g:python3_host_prog = 'C:\Users\ZHorn\scoop\apps\pyenv\current\pyenv-win\versions\3.9.6\python.exe'
+"let g:python3_host_prog = 'C:\Users\ZHorn\scoop\apps\pyenv\current\pyenv-win\versions\3.9.6\python.exe'
+
+" view
+set cindent
+colorscheme gruvbox             "设置主题为 gruvbox
+autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark    " 暗色系
+hi Normal ctermfg=252 ctermbg=none
+"set guioptions=                 "去掉两边的scrollbar
+"set guifont=Monaco:h17          "设置字体和字的大小
 
 set encoding=utf8
 set number relativenumber
@@ -65,6 +80,7 @@ set laststatus=2
 set wrap
 set incsearch
 set mouse=a
+set scrolloff=4
 
 set hidden
 set expandtab
@@ -104,11 +120,11 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
             \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-"nmap <C-b> :NERDTreeToggle<CR>
+nmap <C-b> :NERDTreeToggle<CR>
 nmap <C-b> :NERDTreeToggle<CR><Esc><Esc> " auto refresh
 
 " open NERDTree automatically
-autocmd StdinReadPre * let s:std_in=1
+"autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree
 
 syntax enable
@@ -157,7 +173,7 @@ imap <C-BS> <C-W>
 
 imap  <Esc>\cia
 nmap  \ci
-let g:NERDCompactSexyComs = 1                     "支持多行注释。
+"let g:NERDCompactSexyComs = 1                     "支持多行注释。
 
 nmap da <Esc>ggdG
 nmap ya <Esc>ggyG
@@ -165,10 +181,6 @@ nmap va <Esc>gg0vG$
 
 nmap <C-w>qa <Esc>:qa<CR>
 nmap <C-w>qa1 <Esc>:qa!<CR>
-
-
-colorscheme gruvbox
-hi Normal ctermfg=252 ctermbg=none
 
 "
 " Use <Tab> and <S-Tab> to navigate the completion list
@@ -291,11 +303,9 @@ noremap <C-f> :w<CR>:Autoformat<CR>
 inoremap <C-f> <Esc>:w<CR>:Autoformat<CR>a
 
 "let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-let g:NERDCustomDelimiters = { 'do': { 'left': '-'} }
+"let g:NERDCustomDelimiters = { 'do': { 'left': '-'} }
 
-set cindent
-"colorscheme codedark
-" sync open file with NERDTree
+"sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
     return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
