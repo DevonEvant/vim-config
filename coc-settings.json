@@ -2,7 +2,7 @@
     "languageserver": {
         "svls": {
             "command": "svls",
-            "filetypes": ["systemverilog"]
+            "filetypes": ["systemverilog", "verilog", "verilog_systemverilog"]
         },
         "clangd": {
             "command": "clangd",
@@ -13,7 +13,7 @@
     },
     "suggest.noselect": false,
 
-    "snippets.userSnippetsDirectory": "~/AppData/Local/nvim/personalize-config/mysnippets",
+    "snippets.userSnippetsDirectory": "C:/Users/marshall/AppData/Local/nvim/personalize-config",
 
     "python.pythonPath":"~/scoop/apps/pyenv/current/pyenv-win/versions/3.9.6/python.exe",
 
