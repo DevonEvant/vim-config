@@ -37,6 +37,7 @@ Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-scripts/automatic-for-Verilog'
 
 Plug 'simrat39/symbols-outline.nvim'
 
@@ -137,10 +138,10 @@ inoremap <C-u> <Esc>ui
 
 nmap <C-s> <Esc>:w<CR>
 nmap <C-s>a <Esc>:wa<CR>
-nmap <C-s>% <Esc>:w<CR>:so %<CR>
+nmap <C-s>5 <Esc>:w<CR>:so %<CR>
 inoremap <C-s> <Esc>:w<CR>i
 inoremap <C-s>a <Esc>:wa<CR>i
-inoremap <C-s>% <Esc>:w<CR>:so %<CR>
+inoremap <C-s>5 <Esc>:w<CR>:so %<CR>
 
 "nmap <S-ENTER> ki<CR><ESC>j
 nmap i<ENTER> i<CR><ESC>
@@ -163,6 +164,7 @@ nmap da <Esc>ggdG
 nmap ya <Esc>ggyG
 nmap va <Esc>gg0vG$
 
+nmap <C-w>q1 <Esc>:q!<CR>
 nmap <C-w>qa <Esc>:qa<CR>
 nmap <C-w>qa1 <Esc>:qa!<CR>
 
@@ -451,7 +453,7 @@ let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
 " navegação entre os buffers
 nnoremap <M-Right> :bn<cr>
 nnoremap <M-Left> :bp<cr>
-nnoremap <F4> :bp \|bd #<cr>
+"nnoremap <F4> :bp \|bd #<cr>
 
 "Easymotion comfiger
 let g:EasyMotion_do_mapping = 0
