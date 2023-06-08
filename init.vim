@@ -1,13 +1,29 @@
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 
+" nerdtree
+Plug 'preservim/nerdtree'
+Plug 'scrooloose/nerdtree'
+"Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'preservim/nerdcommenter'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'tsony-tsonev/nerdtree-git-plugin'
+
+" view
+Plug 'morhetz/gruvbox'
+"Plug 'ellisonleao/gruvbox.nvim'
+
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
+
+" tabular
+Plug 'godlygeek/tabular'
 
 "Plug 'SirVer/ultisnips'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }"
 Plug 'Chiel92/vim-autoformat'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
@@ -22,22 +38,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
-Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
-Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
 Plug 'puremourning/vimspector'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tomasiser/vim-code-dark'
-Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'vim-scripts/automatic-for-Verilog'
+
+
 
 Plug 'simrat39/symbols-outline.nvim'
 
@@ -48,7 +59,19 @@ call plug#end()
 "-----system setting-----
 "------------------------
 
-let g:python3_host_prog = 'C:\Users\ZHorn\scoop\apps\pyenv\current\pyenv-win\versions\3.9.6\python.exe'
+"let g:python3_host_prog = 'C:\Users\ZHorn\scoop\apps\pyenv\current\pyenv-win\versions\3.9.6\python.exe'
+
+" view
+set cindent
+colorscheme gruvbox             "设置主题为 gruvbox
+autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark    " 暗色系
+hi Normal ctermfg=252 ctermbg=none
+"set guioptions=                 "去掉两边的scrollbar
+"set guifont=Monaco:h17          "设置字体和字的大小
+
+"
+let NERDTreeShowHidden=1
 
 set encoding=utf8
 set number relativenumber
@@ -66,6 +89,7 @@ set laststatus=2
 set wrap
 set incsearch
 set mouse=a
+set scrolloff=4
 
 set hidden
 set expandtab
@@ -105,11 +129,11 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
             \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-"nmap <C-b> :NERDTreeToggle<CR>
+nmap <C-b> :NERDTreeToggle<CR>
 nmap <C-b> :NERDTreeToggle<CR><Esc><Esc> " auto refresh
 
 " open NERDTree automatically
-autocmd StdinReadPre * let s:std_in=1
+"autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree
 
 syntax enable
@@ -144,7 +168,7 @@ inoremap <C-s>a <Esc>:wa<CR>i
 inoremap <C-s>5 <Esc>:w<CR>:so %<CR>
 
 "nmap <S-ENTER> ki<CR><ESC>j
-nmap i<ENTER> i<CR><ESC>
+nmap i<ENTER> i<CR><ESC>coccoc
 nmap I<ENTER> I<CR><ESC>
 nmap A<ENTER> A<CR><ESC>
 nmap <ENTER> a<CR><ESC>
@@ -158,7 +182,7 @@ imap <C-BS> <C-W>
 
 imap  <Esc>\cia
 nmap  \ci
-let g:NERDCompactSexyComs = 1                     "支持多行注释。
+"let g:NERDCompactSexyComs = 1                     "支持多行注释。
 
 nmap da <Esc>ggdG
 nmap ya <Esc>ggyG
@@ -167,10 +191,6 @@ nmap va <Esc>gg0vG$
 nmap <C-w>q1 <Esc>:q!<CR>
 nmap <C-w>qa <Esc>:qa<CR>
 nmap <C-w>qa1 <Esc>:qa!<CR>
-
-
-colorscheme gruvbox
-hi Normal ctermfg=252 ctermbg=none
 
 "
 " Use <Tab> and <S-Tab> to navigate the completion list
@@ -219,6 +239,36 @@ noremap <C-F> :Prettier<CR>
 
 "echom "Meow!"
 "endfunction
+
+"------Tabularize
+nmap ,=  :Tabularize /^[^=]*\zs=<CR>
+vmap ,=  :Tabularize /^[^=]*\zs=<CR>
+nmap ,== :Tabularize /^[^=]*\zs=/r0c0l0<CR>
+vmap ,== :Tabularize /^[^=]*\zs=/r0c0l0<CR>
+nmap ,:  :Tabularize /:\zs<CR>
+vmap ,:  :Tabularize /:\zs<CR>
+nmap ,|  :Tabularize /|<CR>
+vmap ,|  :Tabularize /|<CR>
+nmap ,,  :Tabularize /,<CR>
+vmap ,,  :Tabularize /,<CR>
+nmap ,< :Tabularize /^[^<]*\zs</l1r0<CR>
+vmap ,< :Tabularize /^[^<]*\zs</l1r0<CR>
+nmap ,; :Tabularize /^[^;]*\zs;/l0r0<CR>
+vmap ,; :Tabularize /^[^;]*\zs;/l0r0<CR>
+
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+    let p = '^\s*|\s.*\s|\s*$'
+    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        Tabularize/|/l1
+        normal! 0
+        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    endif
+endfunction
 
 "------rainbow
 let g:rainbow_active = 1
@@ -293,11 +343,9 @@ noremap <C-f> :w<CR>:Autoformat<CR>
 inoremap <C-f> <Esc>:w<CR>:Autoformat<CR>a
 
 "let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-let g:NERDCustomDelimiters = { 'do': { 'left': '-'} }
+"let g:NERDCustomDelimiters = { 'do': { 'left': '-'} }
 
-set cindent
-"colorscheme codedark
-" sync open file with NERDTree
+"sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
     return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
@@ -385,8 +433,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <F2> <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
+xmap <Leader>f <Plug>(coc-format-selected)
+nmap <Leader>f <Plug>(coc-format-selected)
 
 augroup mygroup
     autocmd!
@@ -396,14 +444,14 @@ augroup mygroup
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
+" Remap for do codeAction of selected region, ex: `<Leader>aap` for current paragraph
+xmap <Leader>a <Plug>(coc-codeaction-selected)
+nmap <Leader>a <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac <Plug>(coc-codeaction)
+nmap <Leader>ac <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf <Plug>(coc-fix-current)
+nmap <Leader>qf <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
@@ -457,8 +505,8 @@ nnoremap <M-Left> :bp<cr>
 
 "Easymotion comfiger
 let g:EasyMotion_do_mapping = 0
-map <leader>f <Plug>(easymotion-bd-f)
-map <leader>s <Plug>(easymotion-s2)
+map <Leader>f <Plug>(easymotion-bd-f)
+map <Leader>s <Plug>(easymotion-s2)
 map <Leader>L <Plug>(easymotion-bd-jk)
 map <Leader>w <Plug>(easymotion-bd-w)
 map  / <Plug>(easymotion-sn)
@@ -473,21 +521,21 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
 " 設置切換tab的快捷鍵 <\> + <i> 切換到第i個 tab
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <Leader>1 <Plug>AirlineSelectTab1
+nmap <Leader>2 <Plug>AirlineSelectTab2
+nmap <Leader>3 <Plug>AirlineSelectTab3
+nmap <Leader>4 <Plug>AirlineSelectTab4
+nmap <Leader>5 <Plug>AirlineSelectTab5
+nmap <Leader>6 <Plug>AirlineSelectTab6
+nmap <Leader>7 <Plug>AirlineSelectTab7
+nmap <Leader>8 <Plug>AirlineSelectTab8
+nmap <Leader>9 <Plug>AirlineSelectTab9
 " 設置切換tab的快捷鍵 <\> + <-> 切換到前一個 tab
-nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <Leader>- <Plug>AirlineSelectPrevTab
 " 設置切換tab的快捷鍵 <\> + <+> 切換到后一個 tab
-nmap <leader>= <Plug>AirlineSelectNextTab
+nmap <Leader>= <Plug>AirlineSelectNextTab
 " 設置切換tab的快捷鍵 <\> + <q> 退出當前的 tab
-nmap <leader>q :bp<cr>:bd #<cr>
+nmap <Leader>q :bp<cr>:bd #<cr>
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
