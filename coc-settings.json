@@ -13,12 +13,7 @@
     },
     "suggest.noselect": false,
 
-<<<<<<< Updated upstream
-    "snippets.userSnippetsDirectory": "~/.config/nvim/personalize-config/mysnippets",
-=======
     "snippets.userSnippetsDirectory": "/home/noi/.config/nvim/personalize-config",
->>>>>>> Stashed changes
-
 
     "snippets.ultisnips.pythonPrompt": false
 }
