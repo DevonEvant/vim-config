@@ -2,7 +2,7 @@
     "languageserver": {
         "svls": {
             "command": "svls",
-            "filetypes": ["systemverilog"]
+            "filetypes": ["systemverilog","verilog","v"]
         },
         "clangd": {
             "command": "clangd",

@@ -1,8 +1,6 @@
 local map = vim.api.nvim_set_keymap
 
--- NERDCommenterToggle
-map('v', string.char(31), '<plug>NERDCommenterToggle', {})
-map('n', string.char(31), '<plug>NERDCommenterToggle', {})
+
 
 -- inoremap
 map('i', 'jk', '<ESC>', {})
@@ -73,10 +71,6 @@ map('n', '<Leader>=', '<Plug>AirlineSelectNextTab', {})
 -- 设置切换标签页的快捷键 <leader> + <q> 退出当前的标签页
 map('n', '<Leader>q', ':bp<cr>:bd #<cr>', {})
 
--- 切换 NERDTree 窗口的快捷键
-map('n', '<C-b>', ':NERDTreeToggle<CR>', {})
--- 切换 NERDTree 窗口并自动刷新的快捷键
-map('n', '<C-b>', ':NERDTreeToggle<CR><Esc><Esc>', {})
 
 -- Tabularize 快捷键设置
 map('n', ',=', ':Tabularize /^[^=]*\\zs=<CR>', {})
@@ -133,4 +127,6 @@ map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 vim.cmd('command! -nargs=0 Prettier :CocCommand prettier.formatFile')
 map('n', '<C-F>', ':Prettier<CR>', {})
 -- map('i', '<C-F>', ':Prettier<CR>', {})
+--
+
 

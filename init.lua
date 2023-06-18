@@ -5,6 +5,3 @@ require('maps')
 require('statusline')     -- lua/statusline.lua
 require('theme')
 
-
--- plugin
-require('_airline')

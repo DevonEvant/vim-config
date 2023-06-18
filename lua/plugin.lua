@@ -1,8 +1,12 @@
 -- 初始化 Packer.nvim
 
 require('packer').startup(function()
-  use { 'preservim/nerdtree' }
+  --use { 'preservim/nerdtree' }
   --use { 'scrooloose/nerdtree' }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
   -- use { 'PhilRunninger/nerdtree-visual-selection' }
   use { 'preservim/nerdcommenter' }
   -- use { 'tiagofumo/vim-nerdtree-syntax-highlight' }
@@ -12,7 +16,7 @@ require('packer').startup(function()
   use { 'morhetz/gruvbox' }
   -- use { 'ellisonleao/gruvbox.nvim' }
 
-  use { 'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
+  --use { 'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
 
   use { 'godlygeek/tabular' }
 
@@ -45,6 +49,35 @@ require('packer').startup(function()
   -- use { 'vim-scripts/automatic-for-Verilog' }
 
   use { 'simrat39/symbols-outline.nvim' }
+  use { 'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+  -- nvim-cmp
+  use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
+  use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
+  use 'hrsh7th/cmp-path'     -- { name = 'path' }
+  use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
+  use 'hrsh7th/nvim-cmp'
+  -- vsnip
+  use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
+  use 'hrsh7th/vim-vsnip'
+  use 'rafamadriz/friendly-snippets'
+  -- lspkind
+  use 'onsails/lspkind-nvim'
+
+  use 'voldikss/vim-floaterm'
 end)
+
+
+
+require('plugins/init')
 
 

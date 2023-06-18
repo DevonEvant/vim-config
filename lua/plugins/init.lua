@@ -1,0 +1,5 @@
+require('plugins/airline')
+require('plugins/nvim-cmp')
+require('plugins/nvim-treesitter')
+require('plugins/telescope')
+require('plugins/nvim-tree')
