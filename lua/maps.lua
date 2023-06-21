@@ -5,8 +5,8 @@ local map = vim.api.nvim_set_keymap
 -- inoremap
 map('i', 'jk', '<ESC>', {})
 map('i', '(', '()<ESC>i', {})
-map('i', '"', '""<ESC>i', {})
-map('i', "'", "''<ESC>i", {})
+--map('i', '"', '""<ESC>i', {})
+--map('i', "'", "''<ESC>i", {})
 map('i', '[', '[]<ESC>i', {})
 
 map('i', '<C-h>', '<Left>', {})

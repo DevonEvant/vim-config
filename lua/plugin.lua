@@ -74,6 +74,8 @@ require('packer').startup(function()
   use 'onsails/lspkind-nvim'
 
   use 'voldikss/vim-floaterm'
+
+  use {"akinsho/toggleterm.nvim", tag = '*'}
 end)
 
 
