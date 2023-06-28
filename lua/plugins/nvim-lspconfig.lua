@@ -1,0 +1,2 @@
+-- require("lsp")
+-- require("nvim-lsp-installer").setup{}

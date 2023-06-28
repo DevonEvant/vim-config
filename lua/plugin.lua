@@ -76,6 +76,8 @@ require('packer').startup(function()
   use 'voldikss/vim-floaterm'
 
   use {"akinsho/toggleterm.nvim", tag = '*'}
+
+  use {"mbledkowski/neuleetcode.vim"}
 end)
 
 

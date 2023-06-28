@@ -4,15 +4,13 @@ vim.o.cindent = true
 -- 在 vimenter 自動執行命令
 vim.cmd('autocmd vimenter * ++nested colorscheme gruvbox')
 
--- 設置 NERDTree 顯示隱藏文件
-vim.g.NERDTreeShowHidden = 1
-
 -- 設置編碼為 UTF-8
 vim.o.encoding = 'utf8'
 
 -- 啟用行號和相對行號
 vim.wo.number = true
 vim.wo.relativenumber = true
+--vim.opt.ruler = true
 
 -- 不生成交換文件
 vim.o.swapfile = false
@@ -63,6 +61,10 @@ vim.o.history = 5000
 
 -- 啟用系統剪貼板
 vim.o.clipboard = 'unnamedplus'
+
+--當行出現底線
+--vim.opt.cursorline = true                          -- 启用当前行高亮显示
+--vim.cmd('highlight CursorLine cterm=underline gui=underline') -- 设置底线样式
 
 -- 設置文件類型自動檢測和縮進
 vim.cmd('filetype plugin indent on')

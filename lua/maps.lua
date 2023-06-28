@@ -4,10 +4,10 @@ local map = vim.api.nvim_set_keymap
 
 -- inoremap
 map('i', 'jk', '<ESC>', {})
-map('i', '(', '()<ESC>i', {})
+--map('i', '(', '()<ESC>i', {})
 --map('i', '"', '""<ESC>i', {})
 --map('i', "'", "''<ESC>i", {})
-map('i', '[', '[]<ESC>i', {})
+--map('i', '[', '[]<ESC>i', {})
 
 map('i', '<C-h>', '<Left>', {})
 map('i', '<C-j>', '<Down>', {})
@@ -30,9 +30,11 @@ map('i', '<C-s>5', '<Esc>:w<CR>:so %<CR>', {})
 map('n', 'da', '<Esc>ggdG', {})
 map('n', 'ya', '<Esc>ggyG', {})
 map('n', 'va', '<Esc>gg0vG$', {})
+map('n', '<C-w>q', '<Esc>:q<CR>', {})
 map('n', '<C-w>q1', '<Esc>:q!<CR>', {})
 map('n', '<C-w>qa', '<Esc>:qa<CR>', {})
 map('n', '<C-w>qa1', '<Esc>:qa!<CR>', {})
+map('n', 'U', '<C-r>', { noremap = true })
 
 -- inoremap
 map('i', string.char(31), '<Esc>\\cia', {})
