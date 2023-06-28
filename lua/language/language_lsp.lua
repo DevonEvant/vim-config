@@ -12,6 +12,7 @@ require("mason-lspconfig").setup {
     "cmake",
     "pyright",
     "verible",
+    "svlangserver"
   },
 }
 
@@ -49,19 +50,25 @@ require("mason-lspconfig").setup_handlers({
 
   ["verible"] = function ()
     lspconfig.verible.setup {
-      capabilities = capabilities,
+      --capabilities = capabilities,
       --cmd = { 'verible-verilog-ls' }, -- 指定 Verible 工具的路径或命令
-      filetypes = { 'verilog', 'systemverilog' ,'verilog_systemverilog'}, -- 指定支持的文件类型
-      root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
-      --settings = {
-      ---- Verible 的特定设置
-      verible = {
-        lint = true, -- 启用 Verible 的语法检查
-        lintArgs = { '--ruleset=svlint' }, -- 传递给 Verible 的语法检查参数
-        format = true, -- 启用 Verible 的代码格式化
-        formatArgs = { '--inplace' }, -- 传递给 Verible 的代码格式化参数
+      --filetypes = { 'verilog', 'systemverilog' ,'verilogsystemverilog' ,'verilog_systemverilog'}, -- 指定支持的文件类型
+      --root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
+      settings = {
+        ---- Verible 的特定设置
+        verible = {
+          lint = true, -- 启用 Verible 的语法检查
+          lintArgs = { '--ruleset=svlint' }, -- 传递给 Verible 的语法检查参数
+          format = true, -- 启用 Verible 的代码格式化
+          formatArgs = { '--inplace' }, -- 传递给 Verible 的代码格式化参数
+        }
       }
-      --}
+    }
+  end,
+
+  ["svlangserver"] = function ()
+    lspconfig.svlangserver.setup {
+      filetypes = { 'verilog', 'systemverilog' ,'verilogsystemverilog' ,'verilog_systemverilog'}, -- 指定支持的文件类型
     }
   end,
 

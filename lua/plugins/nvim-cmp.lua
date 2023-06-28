@@ -24,7 +24,7 @@ cmp.setup({
     -- 出现补全
     ['<C-Space>'] = cmp.mapping.complete(),
     -- 取消补全
-    ["<Space>"] = cmp.mapping({
+    ["<Esc>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close()
     }),
