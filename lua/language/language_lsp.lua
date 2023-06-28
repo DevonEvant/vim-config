@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require("mason").setup()
 require("mason-lspconfig").setup {
@@ -15,49 +16,62 @@ require("mason-lspconfig").setup {
 }
 
 require("mason-lspconfig").setup_handlers({
-    function (server_name)
-      lspconfig[server_name].setup{}
-    end,
+  function (server_name)
+    lspconfig[server_name].setup{}
+  end,
 
-    -- Next, you can provide targeted overrides for specific servers.
-    ["lua_ls"] = function ()
-      lspconfig.lua_ls.setup {
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" }
-            }
+  -- Next, you can provide targeted overrides for specific servers.
+  ["lua_ls"] = function ()
+    lspconfig.lua_ls.setup {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" }
           }
         }
       }
-    end,
+    }
+  end,
 
-    ["clangd"] = function ()
-      lspconfig.clangd.setup {
-        cmd = {
-          "clangd",
-          "--header-insertion=never",
-          "--query-driver=/opt/homebrew/opt/llvm/bin/clang",
-          "--all-scopes-completion",
-          "--completion-style=detailed",
-        }
+  ["clangd"] = function ()
+    lspconfig.clangd.setup {
+      capabilities = capabilities,
+      cmd = {
+        "clangd",
+        "--header-insertion=never",
+        "--query-driver=/opt/homebrew/opt/llvm/bin/clang",
+        "--all-scopes-completion",
+        "--completion-style=detailed",
       }
-    end,
+    }
+  end,
 
-    ["verible"] = function ()
-      lspconfig.verible.setup {
-        --cmd = { 'verible-verilog-ls' }, -- 指定 Verible 工具的路径或命令
-        filetypes = { 'verilog', 'systemverilog' ,'verilog_systemverilog'}, -- 指定支持的文件类型
-        --root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
-        --settings = {
-        ---- Verible 的特定设置
-        --verible = {
-        --lint = true, -- 启用 Verible 的语法检查
-        --lintArgs = { '--ruleset=svlint' }, -- 传递给 Verible 的语法检查参数
-        --format = true, -- 启用 Verible 的代码格式化
-        --formatArgs = { '--inplace' }, -- 传递给 Verible 的代码格式化参数
-        --}
-        --}
+  ["verible"] = function ()
+    lspconfig.verible.setup {
+      capabilities = capabilities,
+      --cmd = { 'verible-verilog-ls' }, -- 指定 Verible 工具的路径或命令
+      filetypes = { 'verilog', 'systemverilog' ,'verilog_systemverilog'}, -- 指定支持的文件类型
+      root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
+      --settings = {
+      ---- Verible 的特定设置
+      verible = {
+        lint = true, -- 启用 Verible 的语法检查
+        lintArgs = { '--ruleset=svlint' }, -- 传递给 Verible 的语法检查参数
+        format = true, -- 启用 Verible 的代码格式化
+        formatArgs = { '--inplace' }, -- 传递给 Verible 的代码格式化参数
       }
-    end
-  })
+      --}
+    }
+  end,
+
+  ["rust_analyzer"] = function ()
+    lspconfig.rust_analyzer.setup {
+      --capabilities = capabilities,
+      --root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
+      --settings = {
+      --['rust-analyzer'] = {},
+      --},
+    }
+  end
+})
