@@ -1,6 +1,9 @@
 local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+vim.lsp.set_log_level("OFF","svlangserver")
+--vim.lsp.set_log_level("TRACE")
+
 require("mason").setup()
 require("mason-lspconfig").setup {
   ensure_installed = {
@@ -12,6 +15,7 @@ require("mason-lspconfig").setup {
     "cmake",
     "pyright",
     "verible",
+    "svls",
     "svlangserver"
   },
 }
@@ -35,6 +39,50 @@ require("mason-lspconfig").setup_handlers({
     }
   end,
 
+
+  ["svlangserver"] = function ()
+    lspconfig.svlangserver.setup {
+      filetypes = { 'verilog', 'systemverilog' ,'verilogsystemverilog' ,'verilog_systemverilog'}, -- 指定
+    }
+  end,
+
+
+  ["rust_analyzer"] = function ()
+    lspconfig.rust_analyzer.setup {
+      --capabilities = capabilities,
+      --root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
+      --settings = {
+      --['rust-analyzer'] = {},
+      --},
+    }
+  end,
+
+  ["pyright"] = function ()
+    lspconfig.pyright.setup({
+      capabilities = capabilities,
+      -- 可選：自訂 LSP 選項
+      -- 詳細參數列表可參考官方文件：https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+      settings = {
+        python = {
+          -- 自訂 pyright 的設定選項
+        }
+      },
+
+      -- 可選：在特定檔案類型時啟用 LSP
+      filetypes = { 'python' },
+
+      -- 可選：自訂處理器選項
+      handlers = {
+        -- 自訂處理特定 LSP 通知的邏輯
+      },
+
+      -- 可選：在啟動 LSP 之前執行額外的邏輯
+      --on_attach = function(client, bufnr)
+      -- 自訂執行當 LSP 附加到緩衝區時的邏輯
+      --end
+    })
+  end,
+
   ["clangd"] = function ()
     lspconfig.clangd.setup {
       capabilities = capabilities,
@@ -52,7 +100,7 @@ require("mason-lspconfig").setup_handlers({
     lspconfig.verible.setup {
       --capabilities = capabilities,
       --cmd = { 'verible-verilog-ls' }, -- 指定 Verible 工具的路径或命令
-      --filetypes = { 'verilog', 'systemverilog' ,'verilogsystemverilog' ,'verilog_systemverilog'}, -- 指定支持的文件类型
+      filetypes = {"a"}, -- 指定支持的文件类型
       --root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
       settings = {
         ---- Verible 的特定设置
@@ -66,19 +114,10 @@ require("mason-lspconfig").setup_handlers({
     }
   end,
 
-  ["svlangserver"] = function ()
-    lspconfig.svlangserver.setup {
-      filetypes = { 'verilog', 'systemverilog' ,'verilogsystemverilog' ,'verilog_systemverilog'}, -- 指定支持的文件类型
+  ["svls"] = function ()
+    lspconfig.svls.setup {
+      --filetypes = { 'verilog', 'systemverilog' ,'verilogsystemverilog' ,'verilog_systemverilog'}, -- 指定
+      filetypes = { 'a'}, -- 指定
     }
   end,
-
-  ["rust_analyzer"] = function ()
-    lspconfig.rust_analyzer.setup {
-      --capabilities = capabilities,
-      --root_dir = lspconfig.util.root_pattern('.git'), -- 指定根目录的查找模式
-      --settings = {
-      --['rust-analyzer'] = {},
-      --},
-    }
-  end
 })

@@ -24,10 +24,10 @@ cmp.setup({
     -- 出现补全
     ['<C-Space>'] = cmp.mapping.complete(),
     -- 取消补全
-    ["<Esc>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close()
-    }),
+    --["<Esc>"] = cmp.mapping({
+    --i = cmp.mapping.abort(),
+    --c = cmp.mapping.close()
+    --}),
     -- 上一个
     --["<C-k>"] = cmp.mapping.select_prev_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -35,10 +35,10 @@ cmp.setup({
     --["<C-j>"] = cmp.mapping.select_next_item(),
     ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     -- 确认
-    ["<CR>"] = cmp.mapping.confirm({
-      select = true,
-      behavior = cmp.ConfirmBehavior.Replace
-    }),
+    --["<CR>"] = cmp.mapping.confirm({
+    --select = true,
+    --behavior = cmp.ConfirmBehavior.Replace
+    --}),
     -- 如果窗口内容太多，可以滚动
     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
