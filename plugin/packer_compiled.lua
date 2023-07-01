@@ -144,11 +144,6 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/indentLine",
     url = "https://github.com/Yggdroot/indentLine"
   },
-  ["leetcode.vim"] = {
-    loaded = true,
-    path = "/home/noi/.local/share/nvim/site/pack/packer/start/leetcode.vim",
-    url = "https://github.com/ianding1/leetcode.vim"
-  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
@@ -168,6 +163,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/preservim/nerdcommenter"
+  },
+  ["neuleetcode.vim"] = {
+    loaded = true,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/neuleetcode.vim",
+    url = "https://github.com/mbledkowski/neuleetcode.vim"
   },
   ["nvim-cmp"] = {
     loaded = true,
