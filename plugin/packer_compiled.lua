@@ -286,6 +286,11 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-polyglot",
     url = "https://github.com/sheerun/vim-polyglot"
   },
+  ["vim-remote-plugin"] = {
+    loaded = true,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-remote-plugin",
+    url = "https://github.com/vim-remote-plugin"
+  },
   ["vim-snippets"] = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-snippets",
