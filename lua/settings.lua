@@ -1,3 +1,5 @@
+vim.cmd("set termguicolors")
+
 -- 設置自動縮進
 vim.o.cindent = true
 
@@ -17,6 +19,7 @@ vim.o.swapfile = false
 
 -- 啟用游標行高亮
 vim.wo.cursorline = true
+vim.o.cursorcolumn = true
 
 -- 設置 Tab 為 4 個空格
 vim.o.tabstop = 4
@@ -72,6 +75,7 @@ vim.cmd('filetype plugin indent on')
 vim.cmd("syntax enable")
 vim.cmd("syntax on")
 vim.o.filetype = "on"
+
 
 
 

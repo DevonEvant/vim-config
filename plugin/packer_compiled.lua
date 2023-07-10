@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/awesome-vim-colorschemes",
     url = "https://github.com/rafi/awesome-vim-colorschemes"
   },
+  ["bigfile.nvim"] = {
+    loaded = true,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/bigfile.nvim",
+    url = "https://github.com/LunarVim/bigfile.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -174,10 +179,20 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-colorizer"] = {
+    loaded = true,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/nvim-colorizer",
+    url = "https://github.com/norcalli/nvim-colorizer"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-notify"] = {
+    loaded = true,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/nvim-notify",
+    url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -208,6 +223,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
+  },
+  ["tabout.nvim"] = {
+    loaded = true,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/tabout.nvim",
+    url = "https://github.com/abecodes/tabout.nvim"
   },
   tabular = {
     loaded = true,
@@ -269,11 +289,6 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-floaterm",
     url = "https://github.com/voldikss/vim-floaterm"
   },
-  ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
-    url = "https://github.com/airblade/vim-gitgutter"
-  },
   ["vim-instant-markdown"] = {
     loaded = false,
     needs_bufread = true,
@@ -285,11 +300,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-polyglot",
     url = "https://github.com/sheerun/vim-polyglot"
-  },
-  ["vim-remote-plugin"] = {
-    loaded = true,
-    path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-remote-plugin",
-    url = "https://github.com/vim-remote-plugin"
   },
   ["vim-snippets"] = {
     loaded = true,

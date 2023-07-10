@@ -25,7 +25,7 @@ require('packer').startup(function()
   use { 'Chiel92/vim-autoformat' }
   use { 'HerringtonDarkholme/yats.vim' } -- TS Syntax
   use { 'Yggdroot/indentLine' }
-  use { 'airblade/vim-gitgutter' }
+  -- use { 'airblade/vim-gitgutter' }
   use { 'christoomey/vim-tmux-navigator' }
   use { 'ctrlpvim/ctrlp.vim' }
   use { 'dense-analysis/ale' }
@@ -78,7 +78,13 @@ require('packer').startup(function()
   use {"akinsho/toggleterm.nvim", tag = '*'}
 
   use {"mbledkowski/neuleetcode.vim"}
-
+  use {"LunarVim/bigfile.nvim"}
+  use {"norcalli/nvim-colorizer.lua"}
+  use {'rcarriga/nvim-notify'}
+  use {'abecodes/tabout.nvim',
+    wants = {'nvim-treesitter'}, -- or require if not used so far
+    after = {'nvim-cmp'}
+  }
 end)
 
 
