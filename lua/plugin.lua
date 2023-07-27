@@ -1,5 +1,18 @@
 -- 初始化 Packer.nvim
 
+-- Packer.nvim installation path (choose any directory you prefer)
+local packer_install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+-- Check if Packer is already installed
+if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
+  vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_install_path)
+end
+
+-- Load Packer
+vim.cmd [[packadd packer.nvim]]
+
+vim.o.termguicolors = true
+
 require('packer').startup(function()
   -- Packer本身
   -- use {'wbthomason/packer.nvim'}
@@ -11,7 +24,6 @@ require('packer').startup(function()
     requires = 'kyazdani42/nvim-web-devicons'
   }
 
-  use 'ahmedkhalf/jupyter-nvim'
 
   -- use { 'PhilRunninger/nerdtree-visual-selection' }
   use { 'preservim/nerdcommenter' }
@@ -94,8 +106,13 @@ require('packer').startup(function()
     after = {'nvim-cmp'}
   }
 
-  -- use { 'jpalardy/vim-slime', ft = 'python' }
-  -- use { 'hanschen/vim-ipython-cell', ft = 'python' }
+  use { 'jpalardy/vim-slime', ft = 'python' }
+  use { 'hanschen/vim-ipython-cell', ft = 'python' }
+
+  use {
+    "ahmedkhalf/jupyter-nvim",
+    run = ":UpdateRemotePlugins",
+  }
 
 end)
 

@@ -149,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/indentLine",
     url = "https://github.com/Yggdroot/indentLine"
   },
+  ["jupyter-nvim"] = {
+    loaded = true,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/jupyter-nvim",
+    url = "https://github.com/ahmedkhalf/jupyter-nvim"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
@@ -179,10 +184,10 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-colorizer"] = {
+  ["nvim-colorizer.lua"] = {
     loaded = true,
-    path = "/home/noi/.local/share/nvim/site/pack/packer/start/nvim-colorizer",
-    url = "https://github.com/norcalli/nvim-colorizer"
+    path = "/home/noi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -225,9 +230,12 @@ _G.packer_plugins = {
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["tabout.nvim"] = {
+    load_after = {},
     loaded = true,
-    path = "/home/noi/.local/share/nvim/site/pack/packer/start/tabout.nvim",
-    url = "https://github.com/abecodes/tabout.nvim"
+    needs_bufread = false,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/opt/tabout.nvim",
+    url = "https://github.com/abecodes/tabout.nvim",
+    wants = { "nvim-treesitter" }
   },
   tabular = {
     loaded = true,
@@ -296,10 +304,24 @@ _G.packer_plugins = {
     path = "/home/noi/.local/share/nvim/site/pack/packer/opt/vim-instant-markdown",
     url = "https://github.com/instant-markdown/vim-instant-markdown"
   },
+  ["vim-ipython-cell"] = {
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/opt/vim-ipython-cell",
+    url = "https://github.com/hanschen/vim-ipython-cell"
+  },
   ["vim-polyglot"] = {
     loaded = true,
     path = "/home/noi/.local/share/nvim/site/pack/packer/start/vim-polyglot",
     url = "https://github.com/sheerun/vim-polyglot"
+  },
+  ["vim-slime"] = {
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/noi/.local/share/nvim/site/pack/packer/opt/vim-slime",
+    url = "https://github.com/jpalardy/vim-slime"
   },
   ["vim-snippets"] = {
     loaded = true,
@@ -334,11 +356,17 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-cmp ]]
+vim.cmd [[ packadd tabout.nvim ]]
+time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-instant-markdown'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType python ++once lua require("packer.load")({'vim-ipython-cell', 'vim-slime'}, { ft = "python" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 
