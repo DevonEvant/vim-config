@@ -43,7 +43,7 @@ map('n', string.char(31), '\\ci', {})
 -- Easymotion 配置
 vim.g.EasyMotion_do_mapping = 0
 map('n', '<Leader>f', '<Plug>(easymotion-bd-f)', {})
-map('n', '<Leader>s', '<Plug>(easymotion-s2)', {})
+-- map('n', '<Leader>s', '<Plug>(easymotion-s2)', {})
 map('n', '<Leader>L', '<Plug>(easymotion-bd-jk)', {})
 map('n', '<Leader>w', '<Plug>(easymotion-bd-w)', {})
 map('n', '/', '<Plug>(easymotion-sn)', {})

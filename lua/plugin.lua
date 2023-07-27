@@ -1,12 +1,18 @@
 -- 初始化 Packer.nvim
 
 require('packer').startup(function()
+  -- Packer本身
+  -- use {'wbthomason/packer.nvim'}
+
   --use { 'preservim/nerdtree' }
   --use { 'scrooloose/nerdtree' }
   use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons'
   }
+
+  use 'ahmedkhalf/jupyter-nvim'
+
   -- use { 'PhilRunninger/nerdtree-visual-selection' }
   use { 'preservim/nerdcommenter' }
   -- use { 'tiagofumo/vim-nerdtree-syntax-highlight' }
@@ -77,14 +83,20 @@ require('packer').startup(function()
 
   use {"akinsho/toggleterm.nvim", tag = '*'}
 
+
   use {"mbledkowski/neuleetcode.vim"}
   use {"LunarVim/bigfile.nvim"}
   use {"norcalli/nvim-colorizer.lua"}
   use {'rcarriga/nvim-notify'}
-  use {'abecodes/tabout.nvim',
+  use {
+    'abecodes/tabout.nvim',
     wants = {'nvim-treesitter'}, -- or require if not used so far
     after = {'nvim-cmp'}
   }
+
+  -- use { 'jpalardy/vim-slime', ft = 'python' }
+  -- use { 'hanschen/vim-ipython-cell', ft = 'python' }
+
 end)
 
 
