@@ -1,5 +1,5 @@
 vim.cmd("set termguicolors")
-
+vim.cmd("set clipboard+=unnamedplus")
 -- 設置自動縮進
 vim.o.cindent = true
 

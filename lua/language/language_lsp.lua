@@ -16,7 +16,14 @@ require("mason-lspconfig").setup {
     "pyright",
     "verible",
     "svls",
-    "svlangserver"
+    "svlangserver",
+    "jsonls", --json
+    "kotlin_language_server", --kotlin
+    "marksman", --markdown
+    "taplo", --toml
+    "sqlls", --sql
+    "lemminx", --xml
+    "yamlls", --yaml
   },
 }
 
@@ -118,6 +125,41 @@ require("mason-lspconfig").setup_handlers({
     lspconfig.svls.setup {
       --filetypes = { 'verilog', 'systemverilog' ,'verilogsystemverilog' ,'verilog_systemverilog'}, -- 指定
       filetypes = { 'a'}, -- 指定
+    }
+  end,
+
+  ["jsonls"] = function ()
+    lspconfig.jsonls.setup {
+    }
+  end,
+
+  ["kotlin_language_server"] = function ()
+    lspconfig.kotlin_language_server.setup {
+    }
+  end,
+
+  ["marksman"] = function ()
+    lspconfig.marksman.setup {
+    }
+  end,
+
+  ["taplo"] = function ()
+    lspconfig.taplo.setup {
+    }
+  end,
+
+  ["sqlls"] = function ()
+    lspconfig.sqlls.setup {
+    }
+  end,
+
+  ["lemminx"] = function ()
+    lspconfig.lemminx.setup {
+    }
+  end,
+
+  ["yamlls"] = function ()
+    lspconfig.yamlls.setup {
     }
   end,
 })
