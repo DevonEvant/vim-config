@@ -133,8 +133,7 @@ map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
 -- Use <Ctrl-F> to format documents with prettier
 -- vim.cmd('command! -nargs=0 Prettier :CocCommand prettier.formatFile')
-map('n', '<C-F>', ':Prettier<CR>', {})
--- map('i', '<C-F>', ':Prettier<CR>', {})
---
+map('n', '<C-F>', ':Autoformat<CR>', {})
+map('i', '<C-F>', ':Autoformat<CR>', {})
 
 
