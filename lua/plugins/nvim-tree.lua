@@ -5,6 +5,7 @@ map('v', string.char(31), ':NvimTreeToggle<CR>', {})
 map('n', string.char(31), ':NvimTreeToggle<CR>', {})
 -- 切换 NERDTree 窗口的快捷键
 map('n', '<C-b>', ':NvimTreeToggle<CR>', {})
+map('n', '<Leader>b', ':NvimTreeToggle<CR>', {})
 -- 切换 NERDTree 窗口并自动刷新的快捷键
 -- map('n', '<C-b>', ':NERDTreeToggle<CR><Esc><Esc>', {})
 
