@@ -1,4 +1,4 @@
-local package = require("Neoformat")
+local package = require("neoformat")
 
 package.setup {
 
