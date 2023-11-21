@@ -127,13 +127,16 @@ map('n', '<C-f>', ':w<CR>:Autoformat<CR>', {})
 map('i', '<C-f>', '<Esc>:w<CR>:Autoformat<CR>a', {})
 
 
+-- map('n', '<C-f>', ':w<CR>:Neoformat<CR>', {})
+-- map('i', '<C-f>', '<Esc>:w<CR>:Neoformat<CR>a', {})
+
 -- Use <Tab> and <S-Tab> to navigate the completion list
 map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
 map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
 -- Use <Ctrl-F> to format documents with prettier
 -- vim.cmd('command! -nargs=0 Prettier :CocCommand prettier.formatFile')
-map('n', '<C-F>', ':Autoformat<CR>', {})
-map('i', '<C-F>', ':Autoformat<CR>', {})
+-- map('n', '<C-F>', ':Autoformat<CR>', {})
+-- map('i', '<C-F>', ':Autoformat<CR>', {})
 
 

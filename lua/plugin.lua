@@ -50,7 +50,17 @@ require('packer').startup(function()
   use { 'easymotion/vim-easymotion' }
   use { 'honza/vim-snippets' }
   use { 'https://github.com/tpope/vim-surround.git' }
-  use { 'instant-markdown/vim-instant-markdown', ft = 'markdown' }
+  use {
+    'instant-markdown/vim-instant-markdown',
+    run = 'npm -g install instant-markdown-d',
+    ft = 'markdown'
+  }
+  -- use({
+  -- "iamcco/markdown-preview.nvim",
+  -- run = "cd app && npm install",
+  -- setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+  -- ft = { "markdown" },
+  -- })
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
   use { 'junegunn/fzf.vim' }
   use { 'junegunn/vim-easy-align' }
@@ -114,6 +124,9 @@ require('packer').startup(function()
     run = ":UpdateRemotePlugins",
   }
 
+  use 'simrat39/rust-tools.nvim'
+  use 'mfussenegger/nvim-dap'
+  use 'sbdchd/neoformat'
 end)
 
 
