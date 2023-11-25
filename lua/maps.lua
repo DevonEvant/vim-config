@@ -22,8 +22,8 @@ map('i', '<C-u>', '<Esc>ui', {})
 map('n', '<C-s>', '<Esc>:w<CR>', {})
 map('n', '<C-s>a', '<Esc>:wa<CR>', {})
 map('n', '<C-s>5', '<Esc>:w<CR>:so %<CR>', {})
-map('i', '<C-s>', '<Esc>:w<CR>i', {})
-map('i', '<C-s>a', '<Esc>:wa<CR>i', {})
+map('i', '<C-s>', '<Esc>:w<CR>a', {})
+map('i', '<C-s>a', '<Esc>:wa<CR>a', {})
 map('i', '<C-s>5', '<Esc>:w<CR>:so %<CR>', {})
 
 -- nmap
