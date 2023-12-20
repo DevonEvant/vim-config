@@ -98,10 +98,10 @@ require("mason-lspconfig").setup_handlers({
         capabilities = capabilities,
         cmd = {
           "clangd",
-          "--header-insertion=never",
-          "--query-driver=/opt/homebrew/opt/llvm/bin/clang",
           "--all-scopes-completion",
           "--completion-style=detailed",
+          -- "-extra-arg=-std=c++20",
+          -- "-std=c++20",
         }
       }
     end,
