@@ -27,6 +27,7 @@ require("mason-lspconfig").setup {
     "sqlls", --sql
     "lemminx", --xml
     "yamlls", --yaml
+    "emmet_language_server", --emmit
   },
 }
 
@@ -98,10 +99,29 @@ require("mason-lspconfig").setup_handlers({
         capabilities = capabilities,
         cmd = {
           "clangd",
+          -- "--all-scopes-completion",
+          -- "--completion-style=detailed",
+          -- 在后台自动分析文件（基于complie_commands)
+          -- "--background-index",
+          -- 标记compelie_commands.json文件的目录位置
+          -- 关于complie_commands.json如何生成可见我上一篇文章的末尾
+          -- https://zhuanlan.zhihu.com/p/84876003
+          -- "--compile-commands-dir=build",
+          -- 同时开启的任务数量
+          -- "-j=12",
+          -- 告诉clangd用那个clang进行编译，路径参考which clang++的路径
+          -- "--query-driver=/usr/bin/clang++",
+          -- clang-tidy功能
+          -- "--clang-tidy",
+          -- "--clang-tidy-checks=performance-*,bugprone-*",
+          -- 全局补全（会自动补充头文件）
           "--all-scopes-completion",
+          -- 更详细的补全内容
           "--completion-style=detailed",
-          -- "-extra-arg=-std=c++20",
-          -- "-std=c++20",
+          -- 补充头文件的形式
+          "--header-insertion=iwyu",
+          -- pch优化的位置
+          "--pch-storage=disk",
         }
       }
     end,
@@ -173,6 +193,7 @@ require("mason-lspconfig").setup_handlers({
 
     ["tsserver"] = function ()
       lspconfig.tsserver.setup {
+
       }
     end,
 
@@ -180,4 +201,33 @@ require("mason-lspconfig").setup_handlers({
       lspconfig.html.setup {
       }
     end,
+
+    ["emmet_language_server"] = function()
+      lspconfig.emmet_language_server.setup({
+          filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
+          -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
+          -- **Note:** only the options listed in the table are supported.
+          init_options = {
+            ---@type table<string, string>
+            includeLanguages = {},
+            --- @type string[]
+            excludeLanguages = {},
+            --- @type string[]
+            extensionsPath = {},
+            --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+            preferences = {},
+            --- @type boolean Defaults to `true`
+            showAbbreviationSuggestions = true,
+            --- @type "always" | "never" Defaults to `"always"`
+            showExpandedAbbreviation = "always",
+            --- @type boolean Defaults to `false`
+            showSuggestionsAsSnippets = false,
+            --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+            syntaxProfiles = {},
+            --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+            variables = {},
+          },
+        })
+
+    end
   })
