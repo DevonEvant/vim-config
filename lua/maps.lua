@@ -1,5 +1,5 @@
 local map = vim.api.nvim_set_keymap
-
+local buf_map = vim.api.nvim_buf_set_keymap
 
 
 -- inoremap
@@ -139,4 +139,67 @@ map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 -- map('n', '<C-F>', ':Autoformat<CR>', {})
 -- map('i', '<C-F>', ':Autoformat<CR>', {})
 
+-- map('n', "lsphov", ':lua vim.lsp.buf.hover()<CR>', {})
 
+-- 跳转到声明
+map("n" , "gd"  , "<cmd>Lspsaga peek_definition<CR>"         , { silent = true , noremap = true })
+map("n" , "gD"  , "<cmd>lua vim.lsp.buf.definition()<CR>"    , { silent = true , noremap = true })
+map("n" , "gf"  , "<cmd>Lspsaga finder<CR>"                  , { silent = true , noremap = true })
+map("n" , "gF"  , "<cmd>lua vim.lsp.buf.format()<CR>"        , { silent = true , noremap = true })
+map('n' , "gh"  , '<cmd>Lspsaga hover_doc<CR>'               , {})
+map("n" , "gi"  , "<cmd>Lspsaga finder imp<CR>"              , { silent = true , noremap = true })
+map("n" , "gr"  , "<cmd>Lspsaga rename<CR>"                  , { silent = true , noremap = true })
+map("n" , "go"  , "<cmd>lua vim.diagnostic.open_float()<CR>" , { silent = true , noremap = true })
+map("n" , "gN"  , "<cmd>lua vim.diagnostic.goto_prev()<CR>"  , { silent = true , noremap = true })
+map("n" , "gn"  , "<cmd>lua vim.diagnostic.goto_next()<CR>"  , { silent = true , noremap = true })
+map("n" , "gdc" , "<cmd>Lspsaga show_cursor_diagnostics<CR>" , { silent = true , noremap = true })
+map("n" , "gdl" , "<cmd>Lspsaga show_line_diagnostics<CR>"   , { silent = true , noremap = true })
+map("n" , "ga"  , "<cmd>Lspsaga code_action<CR>"             , { silent = true , noremap = true })
+map("v" , "ga"  , "<cmd>Lspsaga code_action<CR>"             , { silent = true , noremap = true })
+
+-- 设置用户定义的 emmet_leader 键为 f,
+-- vim.cmd [[let g:user_emmet_leader_key='<C-r>']]
+
+
+-- NERDCommenterToggle
+--map('v', string.char(31), ':NvimTreeToggle<CR>I<ESC>', {})
+--map('n', string.char(31), ':NvimTreeToggle<CR>I<ESC>', {})
+-- 切换 NERDTree 窗口的快捷键
+map('n', '<A-m>', ':NvimTreeToggle<CR>I<ESC>', {})
+-- map('n', '<C-b>', ':NERDTreeToggle<CR><Esc><Esc>', {})
+
+map("n", "tN", ":BufferLineCyclePrev<CR>", {})
+map("n", "tn", ":BufferLineCycleNext<CR>", {})
+map('n', 't1', '<cmd>BufferLineGoToBuffer 1<CR>', {})
+map('n', 't2', '<cmd>BufferLineGoToBuffer 2<CR>', {})
+map('n', 't3', '<cmd>BufferLineGoToBuffer 3<CR>', {})
+map('n', 't4', '<cmd>BufferLineGoToBuffer 4<CR>', {})
+map('n', 't5', '<cmd>BufferLineGoToBuffer 5<CR>', {})
+map('n', 't6', '<cmd>BufferLineGoToBuffer 6<CR>', {})
+map('n', 't7', '<cmd>BufferLineGoToBuffer 7<CR>', {})
+map('n', 't8', '<cmd>BufferLineGoToBuffer 8<CR>', {})
+map('n', 't9', '<cmd>BufferLineGoToBuffer 9<CR>', {})
+
+
+local function bufQuit()
+  local current_bufnr = vim.api.nvim_get_current_buf()
+  local other_visible_count = vim.api.nvim_buflist_filter({
+      start = 1,
+      end_ = vim.api.nvim_buf_get_number(), -- Get the last buffer number
+      -- vim.api.nvim_buf_get_number(), -- Get the last buffer number
+      predicate = function(bufnr)
+        return vim.api.nvim_buf_is_listed(bufnr) and vim.api.nvim_buf_is_visible(bufnr) and bufnr ~= current_bufnr
+      end,
+    })
+
+  if other_visible_count > 1 then
+    -- Close all buffers except current
+    vim.api.nvim_command("bdelete")
+  else
+    -- Quit Neovim
+    vim.cmd("quit")
+  end
+end
+
+-- map('n', 'tq', bufQuit(), {})
+map('n', 'tq', "<cmd>bdelete<CR>", {})

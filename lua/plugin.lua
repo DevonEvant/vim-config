@@ -20,10 +20,14 @@ require('packer').startup(function()
   --use { 'preservim/nerdtree' }
   --use { 'scrooloose/nerdtree' }
   use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons'
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
   }
 
+  -- using packer.nvim
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
 
   -- use { 'PhilRunninger/nerdtree-visual-selection' }
   use { 'preservim/nerdcommenter' }
@@ -86,7 +90,7 @@ require('packer').startup(function()
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- nvim-cmp
   use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
@@ -94,6 +98,21 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-path'     -- { name = 'path' }
   use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
   use 'hrsh7th/nvim-cmp'
+  use 'mfussenegger/nvim-dap'
+  use ({
+      'nvimdev/lspsaga.nvim',
+      after = 'nvim-lspconfig',
+      config = function()
+        require('lspsaga').setup({})
+      end,
+    })
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
   -- vsnip
   use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
   use 'hrsh7th/vim-vsnip'
@@ -125,12 +144,11 @@ require('packer').startup(function()
   }
 
   use 'simrat39/rust-tools.nvim'
-  use 'mfussenegger/nvim-dap'
   use 'sbdchd/neoformat'
 end)
 
 
 
-require('plugins/init')
+ require('plugins/init')
 
 
