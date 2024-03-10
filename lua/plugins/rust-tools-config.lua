@@ -9,5 +9,3 @@ rt.setup({
     },
   })
 
-vim.api.nvim_set_keymap("n", "<C-space>",  ':lua require("rust-tools").hover_actions.hover_actions()<CR>', {})
-vim.api.nvim_set_keymap("n", "<Leader>a",  ':lua require("rust-tools").code_action_group.code_action_group()<CR>', {})

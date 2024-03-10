@@ -123,8 +123,8 @@ map('i', '<C-v>', '<Esc>pi', {})
 -- vim.api.nvim_command('autocmd BufWritePre * :Autoformat')
 
 -- Custom mappings for Autoformat
-map('n', '<C-f>', ':w<CR>:Autoformat<CR>', {})
-map('i', '<C-f>', '<Esc>:w<CR>:Autoformat<CR>a', {})
+-- map('n', '<C-f>', ':w<CR>:Autoformat<CR>', {})
+-- map('i', '<C-f>', '<Esc>:w<CR>:Autoformat<CR>a', {})
 
 
 -- map('n', '<C-f>', ':w<CR>:Neoformat<CR>', {})
@@ -142,20 +142,20 @@ map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 -- map('n', "lsphov", ':lua vim.lsp.buf.hover()<CR>', {})
 
 -- 跳转到声明
-map("n" , "gd"  , "<cmd>Lspsaga peek_definition<CR>"         , { silent = true , noremap = true })
-map("n" , "gD"  , "<cmd>lua vim.lsp.buf.definition()<CR>"    , { silent = true , noremap = true })
-map("n" , "gf"  , "<cmd>Lspsaga finder<CR>"                  , { silent = true , noremap = true })
-map("n" , "gF"  , "<cmd>lua vim.lsp.buf.format()<CR>"        , { silent = true , noremap = true })
-map('n' , "gh"  , '<cmd>Lspsaga hover_doc<CR>'               , {})
-map("n" , "gi"  , "<cmd>Lspsaga finder imp<CR>"              , { silent = true , noremap = true })
-map("n" , "gr"  , "<cmd>Lspsaga rename<CR>"                  , { silent = true , noremap = true })
-map("n" , "go"  , "<cmd>lua vim.diagnostic.open_float()<CR>" , { silent = true , noremap = true })
-map("n" , "gN"  , "<cmd>lua vim.diagnostic.goto_prev()<CR>"  , { silent = true , noremap = true })
-map("n" , "gn"  , "<cmd>lua vim.diagnostic.goto_next()<CR>"  , { silent = true , noremap = true })
-map("n" , "gdc" , "<cmd>Lspsaga show_cursor_diagnostics<CR>" , { silent = true , noremap = true })
-map("n" , "gdl" , "<cmd>Lspsaga show_line_diagnostics<CR>"   , { silent = true , noremap = true })
-map("n" , "ga"  , "<cmd>Lspsaga code_action<CR>"             , { silent = true , noremap = true })
-map("v" , "ga"  , "<cmd>Lspsaga code_action<CR>"             , { silent = true , noremap = true })
+map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true, noremap = true })
+map("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true })
+map("n", "gf", "<cmd>Lspsaga finder<CR>", { silent = true, noremap = true })
+map("n", "gF", "<cmd>lua vim.lsp.buf.format()<CR>", { silent = true, noremap = true })
+map('n', "gh", '<cmd>Lspsaga hover_doc<CR>', {})
+map("n", "gi", "<cmd>Lspsaga finder imp<CR>", { silent = true, noremap = true })
+map("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
+map("n", "go", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, noremap = true })
+map("n", "gN", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { silent = true, noremap = true })
+map("n", "gn", "<cmd>lua vim.diagnostic.goto_next()<CR>", { silent = true, noremap = true })
+map("n", "gdc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true, noremap = true })
+map("n", "gdl", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true, noremap = true })
+map("n", "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
+map("v", "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
 
 -- 设置用户定义的 emmet_leader 键为 f,
 -- vim.cmd [[let g:user_emmet_leader_key='<C-r>']]
@@ -185,7 +185,7 @@ local function bufQuit()
   local current_bufnr = vim.api.nvim_get_current_buf()
   local other_visible_count = vim.api.nvim_buflist_filter({
       start = 1,
-      end_ = vim.api.nvim_buf_get_number(), -- Get the last buffer number
+      end_ = vim.api.nvim_buf_get_number(),   -- Get the last buffer number
       -- vim.api.nvim_buf_get_number(), -- Get the last buffer number
       predicate = function(bufnr)
         return vim.api.nvim_buf_is_listed(bufnr) and vim.api.nvim_buf_is_visible(bufnr) and bufnr ~= current_bufnr
@@ -203,3 +203,27 @@ end
 
 -- map('n', 'tq', bufQuit(), {})
 map('n', 'tq', "<cmd>bdelete<CR>", {})
+
+
+-- vim.api.nvim_set_keymap("n", "<C-space>",  ':lua require("rust-tools").hover_actions.hover_actions()<CR>', {})
+-- vim.api.nvim_set_keymap("n", "<Leader>a",  ':lua require("rust-tools").code_action_group.code_action_group()<CR>', {})
+
+-- local cmp = require('cmp')
+-- map('i', '<C-b>', cmp.mapping.scroll_docs(-4), {})
+-- map('c', '<C-b>', cmp.mapping.scroll_docs(-4), {})
+-- map('i', '<C-u>', cmp.mapping.scroll_docs(4), {})
+-- map('c', '<C-u>', cmp.mapping.scroll_docs(4), {})
+-- map('n', '<C-Space>', cmp.mapping.complete(), {})
+-- map('n', '<C-e>', cmp.mapping.abort(), {})
+-- map('n', '<CR>', cmp.mapping.confirm({ select = true }), {})
+-- map('n', '<S-Tab>', cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }))
+-- map('n', '<Tab>', cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }))
+
+-- 取消补全
+--["<Esc>"] = cmp.mapping({
+--i = cmp.mapping.abort(),
+--c = cmp.mapping.close()
+--}),
+-- 上一个
+--["<C-k>"] = cmp.mapping.select_prev_item(),
+--["<C-j>"] = cmp.mapping.select_next_item(),
