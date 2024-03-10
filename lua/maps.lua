@@ -184,13 +184,13 @@ map('n', 't9', '<cmd>BufferLineGoToBuffer 9<CR>', {})
 local function bufQuit()
   local current_bufnr = vim.api.nvim_get_current_buf()
   local other_visible_count = vim.api.nvim_buflist_filter({
-      start = 1,
-      end_ = vim.api.nvim_buf_get_number(),   -- Get the last buffer number
-      -- vim.api.nvim_buf_get_number(), -- Get the last buffer number
-      predicate = function(bufnr)
-        return vim.api.nvim_buf_is_listed(bufnr) and vim.api.nvim_buf_is_visible(bufnr) and bufnr ~= current_bufnr
-      end,
-    })
+    start = 1,
+    end_ = vim.api.nvim_buf_get_number(),   -- Get the last buffer number
+    -- vim.api.nvim_buf_get_number(), -- Get the last buffer number
+    predicate = function(bufnr)
+      return vim.api.nvim_buf_is_listed(bufnr) and vim.api.nvim_buf_is_visible(bufnr) and bufnr ~= current_bufnr
+    end,
+  })
 
   if other_visible_count > 1 then
     -- Close all buffers except current
@@ -227,3 +227,9 @@ map('n', 'tq', "<cmd>bdelete<CR>", {})
 -- 上一个
 --["<C-k>"] = cmp.mapping.select_prev_item(),
 --["<C-j>"] = cmp.mapping.select_next_item(),
+
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>p', ":Telescope find_files<CR>", {})
+vim.keymap.set('n', '<C-p><C-p>', ":Telescope find_files<CR>", {})
+vim.keymap.set('n', '<C-p>', ":Telescope ", {})
