@@ -233,3 +233,6 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>p', ":Telescope find_files<CR>", {})
 vim.keymap.set('n', '<C-p><C-p>', ":Telescope find_files<CR>", {})
 vim.keymap.set('n', '<C-p>', ":Telescope ", {})
+
+map('n', "<C-\\>", '<cmd>FloatermToggle<CR>', {})
+map('i', "<C-\\>", '<cmd>FloatermToggle<CR>', {})
