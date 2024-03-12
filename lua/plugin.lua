@@ -120,7 +120,6 @@ require('packer').startup(function()
   -- lspkind
   use 'onsails/lspkind-nvim'
 
-  use 'voldikss/vim-floaterm'
 
   use {"akinsho/toggleterm.nvim", tag = '*'}
 
@@ -145,6 +144,7 @@ require('packer').startup(function()
 
   use 'simrat39/rust-tools.nvim'
   use 'sbdchd/neoformat'
+  use 'voldikss/vim-floaterm'
 end)
 
 
