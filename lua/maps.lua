@@ -146,6 +146,7 @@ map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true, noremap = tr
 map("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true })
 map("n", "gf", "<cmd>Lspsaga finder<CR>", { silent = true, noremap = true })
 map("n", "gF", "<cmd>lua vim.lsp.buf.format()<CR>", { silent = true, noremap = true })
+map("n", "gFs", "<cmd>lua vim.lsp.buf.format()<CR><cmd>w<CR>", { silent = true, noremap = true })
 map('n', "gh", '<cmd>Lspsaga hover_doc<CR>', {})
 map("n", "gi", "<cmd>Lspsaga finder imp<CR>", { silent = true, noremap = true })
 map("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
@@ -185,7 +186,7 @@ local function bufQuit()
   local current_bufnr = vim.api.nvim_get_current_buf()
   local other_visible_count = vim.api.nvim_buflist_filter({
     start = 1,
-    end_ = vim.api.nvim_buf_get_number(),   -- Get the last buffer number
+    end_ = vim.api.nvim_buf_get_number(), -- Get the last buffer number
     -- vim.api.nvim_buf_get_number(), -- Get the last buffer number
     predicate = function(bufnr)
       return vim.api.nvim_buf_is_listed(bufnr) and vim.api.nvim_buf_is_visible(bufnr) and bufnr ~= current_bufnr
