@@ -38,7 +38,8 @@ vim.o.backspace = 'indent,eol,start'
 vim.o.laststatus = 2
 
 -- 啟用自動換行
-vim.wo.wrap = true
+-- vim.wo.wrap = true
+vim.wo.wrap = false 
 
 -- 啟用增量搜索
 vim.o.incsearch = true
@@ -76,6 +77,6 @@ vim.cmd("syntax enable")
 vim.cmd("syntax on")
 vim.o.filetype = "on"
 
-
+vim.o.termguicolors = true
 
 
