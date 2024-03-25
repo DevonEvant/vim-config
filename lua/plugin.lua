@@ -1,7 +1,7 @@
 -- 初始化 Packer.nvim
 
 -- Packer.nvim installation path (choose any directory you prefer)
-local packer_install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local packer_install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 -- Check if Packer is already installed
 if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
@@ -27,7 +27,7 @@ require('packer').startup(function()
   }
 
   -- using packer.nvim
-  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
 
   -- use { 'PhilRunninger/nerdtree-visual-selection' }
   use { 'preservim/nerdcommenter' }
@@ -54,17 +54,21 @@ require('packer').startup(function()
   use { 'easymotion/vim-easymotion' }
   use { 'honza/vim-snippets' }
   use { 'https://github.com/tpope/vim-surround.git' }
+  -- use {
+  -- 'instant-markdown/vim-instant-markdown',
+  -- run = 'pnpm -g install instant-markdown-d',
+  -- ft = 'markdown'
+  -- }
+
   use {
-    'instant-markdown/vim-instant-markdown',
-    run = 'npm -g install instant-markdown-d',
-    ft = 'markdown'
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && pnpm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" }
   }
-  -- use({
-  -- "iamcco/markdown-preview.nvim",
-  -- run = "cd app && npm install",
-  -- setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
-  -- ft = { "markdown" },
-  -- })
+
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
   use { 'junegunn/fzf.vim' }
   use { 'junegunn/vim-easy-align' }
@@ -82,7 +86,7 @@ require('packer').startup(function()
 
   use { 'simrat39/symbols-outline.nvim' }
   use { 'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
   use {
@@ -99,13 +103,13 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
   use 'hrsh7th/nvim-cmp'
   use 'mfussenegger/nvim-dap'
-  use ({
-      'nvimdev/lspsaga.nvim',
-      after = 'nvim-lspconfig',
-      config = function()
-        require('lspsaga').setup({})
-      end,
-    })
+  use({
+    'nvimdev/lspsaga.nvim',
+    after = 'nvim-lspconfig',
+    config = function()
+      require('lspsaga').setup({})
+    end,
+  })
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -114,24 +118,24 @@ require('packer').startup(function()
     end,
   }
   -- vsnip
-  use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
+  use 'hrsh7th/cmp-vsnip' -- { name = 'vsnip' }
   use 'hrsh7th/vim-vsnip'
   use 'rafamadriz/friendly-snippets'
   -- lspkind
   use 'onsails/lspkind-nvim'
 
 
-  use {"akinsho/toggleterm.nvim", tag = '*'}
+  use { "akinsho/toggleterm.nvim", tag = '*' }
 
 
-  use {"mbledkowski/neuleetcode.vim"}
-  use {"LunarVim/bigfile.nvim"}
-  use {"norcalli/nvim-colorizer.lua"}
-  use {'rcarriga/nvim-notify'}
+  use { "mbledkowski/neuleetcode.vim" }
+  use { "LunarVim/bigfile.nvim" }
+  use { "norcalli/nvim-colorizer.lua" }
+  use { 'rcarriga/nvim-notify' }
   use {
     'abecodes/tabout.nvim',
-    wants = {'nvim-treesitter'}, -- or require if not used so far
-    after = {'nvim-cmp'}
+    wants = { 'nvim-treesitter' }, -- or require if not used so far
+    after = { 'nvim-cmp' }
   }
 
   use { 'jpalardy/vim-slime', ft = 'python' }
@@ -145,10 +149,10 @@ require('packer').startup(function()
   use 'simrat39/rust-tools.nvim'
   use 'sbdchd/neoformat'
   use 'voldikss/vim-floaterm'
+
+  use 'HonkW93/automatic-verilog'
 end)
 
 
 
- require('plugins/init')
-
-
+require('plugins/init')

@@ -62,7 +62,8 @@ require("mason-lspconfig").setup_handlers({
           -- excludeIndexing     = { "test/**/*.sv*" },
           -- defines             = {},
           -- launchConfiguration = "verilator -sv -Wall --lint-only",
-          formatCommand = "verible-verilog-format --indentation_spaces 4",
+          formatCommand = "verible-verilog-format --indentation_spaces 4 ",
+          -- formatCommand = "verible-verilog-format --indentation_spaces=4 --column_limit=300 --assignment_statement_alignment=align --named_port_alignment=align  --port_declarations_alignment=align --module_net_variable_alignment=align ",
         }
 
         return true
