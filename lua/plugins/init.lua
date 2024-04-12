@@ -15,6 +15,7 @@ require('plugins/tabout')
 require('plugins/jupyter_nvim')
 require('plugins/vim_slime')
 require('plugins/rust-tools-config')
+require('plugins/vimtex')
 
 -- require('plugins/ipython_cell')
 --require('plugins/nvim-lspconfig')

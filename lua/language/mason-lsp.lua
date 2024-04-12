@@ -113,9 +113,12 @@ require("mason-lspconfig").setup_handlers({
     lspconfig.clangd.setup {
       filetypes = { 'c', 'c++', 'cpp' },
       capabilities = cmp_nvim_lsp.default_capabilities(),
+      root_dir = function() vim.fn.getcwd() end,
       cmd = {
         "clangd",
         "--offset-encoding=utf-16",
+        "--fallback-style=WebKit",
+        -- '--fallback-style="AccessModifierOffset: 2"'
       }
     }
   end,
