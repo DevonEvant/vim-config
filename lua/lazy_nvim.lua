@@ -31,8 +31,6 @@ LazyVim.setup({
     --     end,
     -- },
 
-
-
     {
         "MunifTanjim/nui.nvim",
         lazy = true
@@ -197,7 +195,6 @@ LazyVim.setup({
     { 'onsails/lspkind-nvim' },
 
     {
-        -- amongst your other plugins
         'akinsho/toggleterm.nvim',
         version = "*",
         config = true

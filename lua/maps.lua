@@ -183,6 +183,7 @@ map("v", "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true }
 --map('n', string.char(31), ':NvimTreeToggle<CR>I<ESC>', {})
 -- 切换 NERDTree 窗口的快捷键
 map('n', '<A-m>', ':Neotree<CR><ESC>', {})
+map('n', '<A-t>', ':ToggleTerm<CR><ESC>', {})
 -- map('n', '<C-b>', ':NERDTreeToggle<CR><Esc><Esc>', {})
 
 map("n", "tj", ":BufferLineCyclePrev<CR>", {})
