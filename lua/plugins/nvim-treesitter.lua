@@ -1,7 +1,7 @@
 require('nvim-treesitter.configs').setup {
   -- 安装 language parser
   -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = { 'rust', 'verilog' },
+  ensure_installed = { 'rust', 'verilog', "html", "css", "vim", "lua", "javascript", "typescript", "tsx", "cpp", "c", "python" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false

@@ -1,4 +1,5 @@
-require('plugin')
+-- require('plugin')
+require('lazy_nvim')
 require('settings')
 require('auto_on')
 require('language/init')

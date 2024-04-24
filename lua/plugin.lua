@@ -114,7 +114,9 @@ require('packer').startup(function()
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+  
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- nvim-cmp
   use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }

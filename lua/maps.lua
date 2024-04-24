@@ -1,6 +1,7 @@
 local map = vim.api.nvim_set_keymap
 local buf_map = vim.api.nvim_buf_set_keymap
 
+-- <enter> 增量选择
 
 -- inoremap
 map('i', 'jk', '<ESC>', {})
@@ -30,7 +31,7 @@ map('i', '<C-s>5', '<Esc>:w<CR>:so %<CR>', {})
 map('n', 'da', '<Esc>ggdG', {})
 map('n', 'ya', '<Esc>ggyG', {})
 map('n', 'va', '<Esc>gg0vG$', {})
-map('n', '<C-w>q', '<Esc>:q<CR>', {})
+map('n', '<C-w>qq', '<Esc>:q<CR>', {})
 map('n', '<C-w>q1', '<Esc>:q!<CR>', {})
 map('n', '<C-w>qa', '<Esc>:qa<CR>', {})
 map('n', '<C-w>qa1', '<Esc>:qa!<CR>', {})
@@ -181,11 +182,11 @@ map("v", "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true }
 --map('v', string.char(31), ':NvimTreeToggle<CR>I<ESC>', {})
 --map('n', string.char(31), ':NvimTreeToggle<CR>I<ESC>', {})
 -- 切换 NERDTree 窗口的快捷键
-map('n', '<A-m>', ':NvimTreeToggle<CR>I<ESC>', {})
+map('n', '<A-m>', ':Neotree<CR><ESC>', {})
 -- map('n', '<C-b>', ':NERDTreeToggle<CR><Esc><Esc>', {})
 
-map("n", "tN", ":BufferLineCyclePrev<CR>", {})
-map("n", "tn", ":BufferLineCycleNext<CR>", {})
+map("n", "tj", ":BufferLineCyclePrev<CR>", {})
+map("n", "tk", ":BufferLineCycleNext<CR>", {})
 map('n', 't1', '<cmd>BufferLineGoToBuffer 1<CR>', {})
 map('n', 't2', '<cmd>BufferLineGoToBuffer 2<CR>', {})
 map('n', 't3', '<cmd>BufferLineGoToBuffer 3<CR>', {})
@@ -198,23 +199,23 @@ map('n', 't9', '<cmd>BufferLineGoToBuffer 9<CR>', {})
 
 
 local function bufQuit()
-  local current_bufnr = vim.api.nvim_get_current_buf()
-  local other_visible_count = vim.api.nvim_buflist_filter({
-    start = 1,
-    end_ = vim.api.nvim_buf_get_number(), -- Get the last buffer number
-    -- vim.api.nvim_buf_get_number(), -- Get the last buffer number
-    predicate = function(bufnr)
-      return vim.api.nvim_buf_is_listed(bufnr) and vim.api.nvim_buf_is_visible(bufnr) and bufnr ~= current_bufnr
-    end,
-  })
+    local current_bufnr = vim.api.nvim_get_current_buf()
+    local other_visible_count = vim.api.nvim_buflist_filter({
+        start = 1,
+        end_ = vim.api.nvim_buf_get_number(), -- Get the last buffer number
+        -- vim.api.nvim_buf_get_number(), -- Get the last buffer number
+        predicate = function(bufnr)
+            return vim.api.nvim_buf_is_listed(bufnr) and vim.api.nvim_buf_is_visible(bufnr) and bufnr ~= current_bufnr
+        end,
+    })
 
-  if other_visible_count > 1 then
-    -- Close all buffers except current
-    vim.api.nvim_command("bdelete")
-  else
-    -- Quit Neovim
-    vim.cmd("quit")
-  end
+    if other_visible_count > 1 then
+        -- Close all buffers except current
+        vim.api.nvim_command("bdelete")
+    else
+        -- Quit Neovim
+        vim.cmd("quit")
+    end
 end
 
 -- map('n', 'tq', bufQuit(), {})
@@ -252,3 +253,26 @@ vim.keymap.set('n', '<C-p>', ":Telescope ", {})
 
 -- map('n', '<C-\\>', '<cmd>FloatermToggle<CR>', {})
 -- map('i', '<C-\\>', '<cmd>FloatermToggle<CR>', {})
+
+
+local gs = package.loaded.gitsigns
+-- stylua: ignore start
+vim.keymap.set("n", "gt[", gs.next_hunk, { desc = "Next Hunk" })
+vim.keymap.set("n", "gt]", gs.prev_hunk, { desc = "Prev Hunk" })
+vim.keymap.set("n", "gtS", gs.stage_buffer, { desc = "Stage Buffer" })
+vim.keymap.set("n", "gtu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk" })
+vim.keymap.set("n", "gtR", gs.reset_buffer, { desc = "Reset Buffer" })
+vim.keymap.set("n", "gtp", gs.preview_hunk_inline, { desc = "Preview Hunk Inline" })
+vim.keymap.set("n", "gtb", function() gs.blame_line({ full = true }) end, { desc = "Blame Line" })
+vim.keymap.set("n", "gtd", gs.diffthis, { desc = "Diff This" })
+vim.keymap.set("n", "gtD", function() gs.diffthis("~") end, { desc = "Diff This ~" })
+vim.keymap.set('n', 'gts', gs.stage_hunk)
+vim.keymap.set('n', 'gtr', gs.reset_hunk)
+vim.keymap.set('v', 'gts', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+vim.keymap.set('v', 'gtr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+vim.keymap.set('n', 'gtp', gs.preview_hunk)
+vim.keymap.set('n', 'gTb', gs.toggle_current_line_blame)
+vim.keymap.set('n', 'gTd', gs.toggle_deleted)
+vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "GitSigns Select Hunk" })
+vim.keymap.set({ "n", "v" }, "ghs", gs.stage_hunk, { desc = "Stage Hunk" })
+vim.keymap.set({ "n", "v" }, "ghr", gs.reset_hunk, { desc = "Reset Hunk" })
