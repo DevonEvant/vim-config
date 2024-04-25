@@ -67,6 +67,9 @@ LazyVim.setup({
     },
     {
         'nvimtools/none-ls.nvim',
+        dependencies = {
+            "nvimtools/none-ls-extras.nvim",
+        },
         -- opts = function(_, opts)
         --     local null_ls = require('null-ls').builtins
         --     opts.sources = {
@@ -347,6 +350,10 @@ LazyVim.setup({
         requires = { 'nvim-lua/plenary.nvim' },
     },
 
+    {
+        'echasnovski/mini.nvim',
+        version = 'false'
+    },
 })
 
 require('plugins/init')
