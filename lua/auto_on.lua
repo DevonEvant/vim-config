@@ -6,3 +6,4 @@
 -- autocmd FileType python setlocal formatprg=autopep8\ --in-place\ --aggressive\ --aggressive\ -\ --max-line-length=120\ --ignore=E402,E501,E302
 -- augroup END
 -- ]], true) -- auto format when you save python file
+

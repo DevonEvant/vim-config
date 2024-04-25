@@ -86,7 +86,7 @@ require("mason-lspconfig").setup_handlers({
   ["pyright"] = function()
     lspconfig.pyright.setup({
       filetypes = { 'python' },
-      capabilities = capabilities,
+      capabilities = cmp_nvim_lsp.default_capabilities(),
       -- 可選：自訂 LSP 選項
       -- 詳細參數列表可參考官方文件：https://github.com/microsoft/pyright/blob/main/docs/configuration.md
       settings = {

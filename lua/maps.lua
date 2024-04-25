@@ -277,3 +277,12 @@ vim.keymap.set('n', 'gTd', gs.toggle_deleted)
 vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "GitSigns Select Hunk" })
 vim.keymap.set({ "n", "v" }, "ghs", gs.stage_hunk, { desc = "Stage Hunk" })
 vim.keymap.set({ "n", "v" }, "ghr", gs.reset_hunk, { desc = "Reset Hunk" })
+
+
+-- Lua
+vim.keymap.set("n", "gxx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "gxw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "gxd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "gxq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "gxl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gxr", function() require("trouble").toggle("lsp_references") end)

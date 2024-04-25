@@ -55,13 +55,24 @@ LazyVim.setup({
     },
 
     {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "nvimtools/none-ls.nvim",
+        },
+        -- config = function()
+        --     require("your.null-ls.config") -- require your null-ls config here (example below)
+        -- end,
+    },
+    {
         'nvimtools/none-ls.nvim',
-        opts = function(_, opts)
-            local null_ls = require('null-ls').builtins
-            opts.sources = {
-            }
-            return opts
-        end
+        -- opts = function(_, opts)
+        --     local null_ls = require('null-ls').builtins
+        --     opts.sources = {
+        --     }
+        --     return opts
+        -- end
     },
 
     { 'morhetz/gruvbox' },
@@ -141,15 +152,17 @@ LazyVim.setup({
 
     { "nvim-lua/plenary.nvim" },
 
-    {
-        'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-    },
 
 
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'neovim/nvim-lspconfig' },
+    {
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim"
+        },
+    },
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -322,6 +335,18 @@ LazyVim.setup({
             -- })
         end
     },
+
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+        },
+    },
+    {
+        'nvim-telescope/telescope.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+    },
+
 })
 
 require('plugins/init')

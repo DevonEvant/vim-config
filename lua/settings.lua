@@ -1,5 +1,6 @@
+vim.g.python3_host_prog = "/home/noi/pyenv/bin/python3"
 vim.cmd("set termguicolors")
-vim.cmd("set clipboard+=unnamedplus")
+vim.cmd("set clipboard=unnamedplus")
 -- 設置自動縮進
 vim.o.cindent = true
 
@@ -22,8 +23,10 @@ vim.wo.cursorline = true
 vim.o.cursorcolumn = true
 
 -- 設置 Tab 為 4 個空格
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+-- 設置縮進時使用空格
+vim.opt.expandtab = true
 
 -- 啟用高亮搜尋結果
 vim.o.hlsearch = true
@@ -39,7 +42,7 @@ vim.o.laststatus = 2
 
 -- 啟用自動換行
 -- vim.wo.wrap = true
-vim.wo.wrap = false 
+vim.wo.wrap = false
 
 -- 啟用增量搜索
 vim.o.incsearch = true
@@ -53,8 +56,6 @@ vim.o.scrolloff = 4
 -- 隱藏未保存的緩存文件
 vim.o.hidden = true
 
--- 設置縮進時使用空格
-vim.o.expandtab = true
 
 -- 啟用自動縮進
 vim.o.autoindent = true
@@ -78,5 +79,3 @@ vim.cmd("syntax on")
 vim.o.filetype = "on"
 
 vim.o.termguicolors = true
-
-
