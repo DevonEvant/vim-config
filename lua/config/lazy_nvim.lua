@@ -40,7 +40,7 @@ LazyVim.setup({
         'akinsho/bufferline.nvim',
         requires = 'nvim-tree/nvim-web-devicons',
         -- config = function()
-            -- require('plugins/bufferline_')
+        -- require('plugins/bufferline_')
         -- end,
     },
 
@@ -359,7 +359,10 @@ LazyVim.setup({
         'theHamsta/nvim-dap-virtual-text',
         dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' }
     },
-    { "folke/neodev.nvim" },
+    {
+        "folke/neodev.nvim",
+        dependencies = { "nvim-dap-ui", "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+    },
     {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
@@ -370,6 +373,10 @@ LazyVim.setup({
         "jay-babu/mason-nvim-dap.nvim",
     },
     { 'mfussenegger/nvim-dap' },
+    {
+        'mfussenegger/nvim-dap-python',
+        dependencies = { "mfussenegger/nvim-dap" }
+    }
 })
 
 -- require('plugins/init')

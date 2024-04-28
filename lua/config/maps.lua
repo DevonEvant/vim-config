@@ -286,3 +286,10 @@ vim.keymap.set("n", "gxd", function() require("trouble").toggle("document_diagno
 vim.keymap.set("n", "gxq", function() require("trouble").toggle("quickfix") end)
 vim.keymap.set("n", "gxl", function() require("trouble").toggle("loclist") end)
 vim.keymap.set("n", "gxr", function() require("trouble").toggle("lsp_references") end)
+
+
+vim.keymap.set('n', 'gbc', require 'dap'.continue)
+vim.keymap.set('n', 'gbn', require 'dap'.step_over)
+vim.keymap.set('n', 'gbN', require 'dap'.step_into)
+vim.keymap.set('n', 'gbo', require 'dap'.step_out)
+vim.keymap.set('n', 'gbb', require 'dap'.toggle_breakpoint)
