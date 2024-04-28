@@ -39,9 +39,9 @@ LazyVim.setup({
     {
         'akinsho/bufferline.nvim',
         requires = 'nvim-tree/nvim-web-devicons',
-        config = function()
-            require('plugins/bufferline_')
-        end,
+        -- config = function()
+            -- require('plugins/bufferline_')
+        -- end,
     },
 
     -- {
@@ -174,9 +174,9 @@ LazyVim.setup({
 
     {
         'hrsh7th/nvim-cmp',
-        config = function()
-            require('plugins/nvim-cmp')
-        end
+        -- config = function()
+        --     require('plugins/nvim-cmp')
+        -- end
     },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
@@ -354,6 +354,22 @@ LazyVim.setup({
         'echasnovski/mini.nvim',
         version = 'false'
     },
+
+    {
+        'theHamsta/nvim-dap-virtual-text',
+        dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' }
+    },
+    { "folke/neodev.nvim" },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+    },
+    {
+        "williamboman/mason.nvim",
+        "mfussenegger/nvim-dap",
+        "jay-babu/mason-nvim-dap.nvim",
+    },
+    { 'mfussenegger/nvim-dap' },
 })
 
-require('plugins/init')
+-- require('plugins/init')
