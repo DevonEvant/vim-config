@@ -263,6 +263,25 @@ LazyVim.setup({
     -- run = ':UpdateRemotePlugins',
     -- },
 
+    { 'hkupty/iron.nvim' },
+    { 'kana/vim-textobj-user' },
+    { 'kana/vim-textobj-line' },
+    {
+        'GCBallesteros/vim-textobj-hydrogen',
+        dependencies = {
+            'kana/vim-textobj-user',
+            'kana/vim-textobj-line',
+        }
+    },
+    {
+        'GCBallesteros/jupytext.nvim',
+        dependencies = {
+            'GCBallesteros/vim-textobj-hydrogen',
+            'kana/vim-textobj-user',
+            'kana/vim-textobj-line',
+        },
+    },
+
     { 'simrat39/rust-tools.nvim' },
 
     { 'sbdchd/neoformat' },
