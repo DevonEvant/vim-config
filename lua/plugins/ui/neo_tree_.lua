@@ -159,12 +159,16 @@ require("neo-tree").setup({
     nesting_rules = {},
     filesystem = {
         filtered_items = {
-            visible = false, -- when true, they will just be displayed differently than normal items
-            hide_dotfiles = true,
-            hide_gitignored = true,
-            hide_hidden = true, -- only works on Windows for hidden files/directories
+            -- visible = false, -- when true, they will just be displayed differently than normal items
+            visible = true, -- when true, they will just be displayed differently than normal items
+            -- hide_dotfiles = true,
+            hide_dotfiles = false,
+            -- hide_gitignored = true,
+            hide_gitignored = false,
+            -- hide_hidden = true, -- only works on Windows for hidden files/directories
+            hide_hidden = false, -- only works on Windows for hidden files/directories
             hide_by_name = {
-                --"node_modules"
+                "node_modules"
             },
             hide_by_pattern = { -- uses glob style patterns
                 --"*.meta",
@@ -174,7 +178,7 @@ require("neo-tree").setup({
                 --".gitignored",
             },
             never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-                --".DS_Store",
+                -- ".DS_Store",
                 --"thumbs.db"
             },
             never_show_by_pattern = { -- uses glob style patterns
@@ -182,7 +186,8 @@ require("neo-tree").setup({
             },
         },
         follow_current_file = {
-            enabled = false,                    -- This will find and focus the file in the active buffer every time
+            -- enabled = false,                    -- This will find and focus the file in the active buffer every time
+            enabled = true,                    -- This will find and focus the file in the active buffer every time
             --               -- the current file is changed while the tree is open.
             leave_dirs_open = false,            -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },

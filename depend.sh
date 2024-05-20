@@ -1,2 +1,3 @@
+paru -S ttf-firacode-nerd
 paru -S texlive-latex
-yay -S wl-clipboard
+paru -S wl-clipboard

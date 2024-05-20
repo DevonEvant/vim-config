@@ -198,6 +198,17 @@ map('n', 't7', '<cmd>BufferLineGoToBuffer 7<CR>', {})
 map('n', 't8', '<cmd>BufferLineGoToBuffer 8<CR>', {})
 map('n', 't9', '<cmd>BufferLineGoToBuffer 9<CR>', {})
 
+map('n', 'tQ', "<cmd>bdelete !<CR>", {})
+map('n', 'tqq', "<cmd>bdelete<CR>", {})
+map('n', 'tq1', "<cmd>bdelete 1<CR>", {})
+map('n', 'tq2', "<cmd>bdelete 2<CR>", {})
+map('n', 'tq3', "<cmd>bdelete 3<CR>", {})
+map('n', 'tq4', "<cmd>bdelete 4<CR>", {})
+map('n', 'tq5', "<cmd>bdelete 5<CR>", {})
+map('n', 'tq6', "<cmd>bdelete 6<CR>", {})
+map('n', 'tq7', "<cmd>bdelete 7<CR>", {})
+map('n', 'tq8', "<cmd>bdelete 8<CR>", {})
+map('n', 'tq9', "<cmd>bdelete 9<CR>", {})
 
 local function bufQuit()
     local current_bufnr = vim.api.nvim_get_current_buf()
@@ -220,7 +231,6 @@ local function bufQuit()
 end
 
 -- map('n', 'tq', bufQuit(), {})
-map('n', 'tq', "<cmd>bdelete<CR>", {})
 
 
 -- vim.api.nvim_set_keymap("n", "<C-space>",  ':lua require("rust-tools").hover_actions.hover_actions()<CR>', {})
