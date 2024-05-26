@@ -325,14 +325,15 @@ LazyVim.setup({
 	--         -- ...
 	--     end
 	-- },
-	-- {
-	--     's1n7ax/nvim-window-picker',
-	--     version = '2.*',
-	--     config = function()
-	--         require('plugins/nvim_windows_packer')
-	--     end,
-	--     dependencies = { "luarocks.nvim" },
-	-- },
+	{
+		"s1n7ax/nvim-window-picker",
+		name = "window-picker",
+		event = "VeryLazy",
+		version = "2.*",
+		config = function()
+			require("window-picker").setup()
+		end,
+	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
