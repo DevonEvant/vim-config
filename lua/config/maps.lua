@@ -303,3 +303,5 @@ vim.keymap.set('n', 'gbn', require 'dap'.step_over)
 vim.keymap.set('n', 'gbN', require 'dap'.step_into)
 vim.keymap.set('n', 'gbo', require 'dap'.step_out)
 vim.keymap.set('n', 'gbb', require 'dap'.toggle_breakpoint)
+
+vim.keymap.set('n', 'gl', ':TlistToggle<CR>',{})

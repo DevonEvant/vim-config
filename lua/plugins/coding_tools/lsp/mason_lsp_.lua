@@ -117,7 +117,8 @@ require("mason-lspconfig").setup_handlers({
 			cmd = {
 				"clangd",
 				"--offset-encoding=utf-16",
-				"--fallback-style=WebKit",
+				"--fallback-style=Google",
+				-- "--fallback-style=WebKit",
 				-- '--fallback-style="AccessModifierOffset: 2"'
 			},
 		})

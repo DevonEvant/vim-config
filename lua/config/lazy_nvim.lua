@@ -401,6 +401,8 @@ LazyVim.setup({
 		"mfussenegger/nvim-dap-python",
 		dependencies = { "mfussenegger/nvim-dap" },
 	},
+
+	{ "vim-scripts/taglist.vim" },
 })
 
 -- require('plugins/init')
