@@ -305,3 +305,7 @@ vim.keymap.set('n', 'gbo', require 'dap'.step_out)
 vim.keymap.set('n', 'gbb', require 'dap'.toggle_breakpoint)
 
 vim.keymap.set('n', 'gl', ':TlistToggle<CR>',{})
+
+-- 使用 :set foldenable! 命令切換折疊功能。
+-- 使用 zo 命令展開折疊，使用 zc 命令折疊代碼塊。
+-- 使用 :set foldcolumn=0 可以暫時關閉折疊列顯示，這樣你可以更容易地看到折疊狀態。

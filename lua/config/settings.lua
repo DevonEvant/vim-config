@@ -5,10 +5,10 @@ vim.cmd("set clipboard=unnamedplus")
 vim.o.cindent = true
 
 -- 在 vimenter 自動執行命令
-vim.cmd('autocmd vimenter * ++nested colorscheme gruvbox')
+vim.cmd("autocmd vimenter * ++nested colorscheme gruvbox")
 
 -- 設置編碼為 UTF-8
-vim.o.encoding = 'utf8'
+vim.o.encoding = "utf8"
 
 -- 啟用行號和相對行號
 vim.wo.number = true
@@ -35,7 +35,7 @@ vim.o.hlsearch = true
 vim.o.cindent = true
 
 -- 設置 backspace 功能
-vim.o.backspace = 'indent,eol,start'
+vim.o.backspace = "indent,eol,start"
 
 -- 設置顯示最後一行的狀態列
 vim.o.laststatus = 2
@@ -48,14 +48,13 @@ vim.wo.wrap = false
 vim.o.incsearch = true
 
 -- 啟用滑鼠支持
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- 設置滾動時光標位置
 vim.o.scrolloff = 4
 
 -- 隱藏未保存的緩存文件
 vim.o.hidden = true
-
 
 -- 啟用自動縮進
 vim.o.autoindent = true
@@ -65,17 +64,20 @@ vim.o.autoindent = true
 vim.o.history = 5000
 
 -- 啟用系統剪貼板
-vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = "unnamedplus"
 
 --當行出現底線
 --vim.opt.cursorline = true                          -- 启用当前行高亮显示
-vim.cmd('highlight CursorLine cterm=underline gui=underline') -- 设置底线样式
+vim.cmd("highlight CursorLine cterm=underline gui=underline") -- 设置底线样式
 
 -- 設置文件類型自動檢測和縮進
-vim.cmd('filetype plugin indent on')
+vim.cmd("filetype plugin indent on")
 
 vim.cmd("syntax enable")
 vim.cmd("syntax on")
 vim.o.filetype = "on"
 
 vim.o.termguicolors = true
+
+vim.opt.concealcursor = ""
+-- vim.opt.conceallevel = 0
