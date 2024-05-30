@@ -266,6 +266,7 @@ vim.keymap.set('n', '<C-p>', ":Telescope ", {})
 -- map('i', '<C-\\>', '<cmd>FloatermToggle<CR>', {})
 
 
+require('gitsigns').setup()
 local gs = package.loaded.gitsigns
 -- stylua: ignore start
 vim.keymap.set("n", "gt[", gs.next_hunk, { desc = "Next Hunk" })

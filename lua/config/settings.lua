@@ -1,6 +1,6 @@
 vim.g.python3_host_prog = "/home/noi/pyenv/bin/python3"
 vim.cmd("set termguicolors")
-vim.cmd("set clipboard=unnamedplus")
+-- vim.cmd("set clipboard=unnamedplus")
 -- 設置自動縮進
 vim.o.cindent = true
 
@@ -79,5 +79,7 @@ vim.o.filetype = "on"
 
 vim.o.termguicolors = true
 
+-- vim.cmd("set concealcursor= ")
 vim.opt.concealcursor = ""
+-- vim.cmd("set conceallevel=0")
 -- vim.opt.conceallevel = 0

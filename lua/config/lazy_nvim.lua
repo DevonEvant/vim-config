@@ -114,9 +114,6 @@ LazyVim.setup({
 		"lervag/vimtex",
 		lazy = false, -- we don't want to lazy load VimTeX
 		opt = true,
-		init = function()
-			vim.g.vimtex_view_general_viewer = "okular"
-		end,
 		ft = "tex",
 	},
 
@@ -125,10 +122,6 @@ LazyVim.setup({
 		dir = "~/.fzf",
 		run = "./install --all",
 	},
-	-- {
-	-- 'junegunn/fzf',
-	-- run = function() vim.fn['fzf#install']() end
-	-- },
 
 	{ "junegunn/vim-easy-align" },
 
@@ -142,7 +135,9 @@ LazyVim.setup({
 
 	{ "ryanoasis/vim-devicons" },
 
+    --[[
 	{ "sheerun/vim-polyglot" },
+    --]]
 
 	{ "tomasiser/vim-code-dark" },
 
@@ -171,12 +166,7 @@ LazyVim.setup({
 		build = ":TSUpdate",
 	},
 
-	{
-		"hrsh7th/nvim-cmp",
-		-- config = function()
-		--     require('plugins/nvim-cmp')
-		-- end
-	},
+	{ "hrsh7th/nvim-cmp", },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-path" },
@@ -188,9 +178,6 @@ LazyVim.setup({
 
 	{
 		"nvimdev/lspsaga.nvim",
-		config = function()
-			require("lspsaga").setup({})
-		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter", -- optional
 			"nvim-tree/nvim-web-devicons", -- optional
@@ -296,20 +283,7 @@ LazyVim.setup({
 
 	{ "HonkW93/automatic-verilog" },
 
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "▎" },
-				change = { text = "▎" },
-				delete = { text = "" },
-				topdelete = { text = "" },
-				changedelete = { text = "▎" },
-				untracked = { text = "▎" },
-			},
-			on_attach = function(buffer) end,
-		},
-	},
+	{ "lewis6991/gitsigns.nvim", },
 
 	-- {
 	--     "vhyrro/luarocks.nvim",
@@ -330,9 +304,6 @@ LazyVim.setup({
 		name = "window-picker",
 		event = "VeryLazy",
 		version = "2.*",
-		config = function()
-			require("window-picker").setup()
-		end,
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -349,25 +320,15 @@ LazyVim.setup({
 		-- You can optionally lazy-load heirline on UiEnter
 		-- to make sure all required plugins and colorschemes are loaded before setup
 		event = "UiEnter",
-		config = function()
-			require("heirline").setup({})
-		end,
 	},
 
 	{
 		"Pocco81/DAPInstall.nvim",
-		config = function()
-			-- local dap_install = require("dap-install")
-			-- dap_install.setup({
-			--     installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-			-- })
-		end,
 	},
 
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
 	},
 	{
 		"nvim-telescope/telescope.nvim",

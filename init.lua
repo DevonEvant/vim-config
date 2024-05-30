@@ -41,3 +41,7 @@ end
 -- print(config_dir)
 
 require_all_files_in_directory(config_dir)
+-- vim.opt.concealcursor = ""
+-- vim.opt_global.concealcursor = ""
+-- vim.opt_local.concealcursor = ""
+
