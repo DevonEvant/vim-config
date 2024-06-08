@@ -135,7 +135,7 @@ LazyVim.setup({
 
 	{ "ryanoasis/vim-devicons" },
 
-    --[[
+	--[[
 	{ "sheerun/vim-polyglot" },
     --]]
 
@@ -166,7 +166,7 @@ LazyVim.setup({
 		build = ":TSUpdate",
 	},
 
-	{ "hrsh7th/nvim-cmp", },
+	{ "hrsh7th/nvim-cmp" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-path" },
@@ -283,7 +283,7 @@ LazyVim.setup({
 
 	{ "HonkW93/automatic-verilog" },
 
-	{ "lewis6991/gitsigns.nvim", },
+	{ "lewis6991/gitsigns.nvim" },
 
 	-- {
 	--     "vhyrro/luarocks.nvim",
@@ -364,6 +364,21 @@ LazyVim.setup({
 	},
 
 	{ "vim-scripts/taglist.vim" },
+
+	{
+		"camspiers/luarocks",
+		opts = { rocks = { "fzy" } },
+	},
+	{
+		"camspiers/snap",
+		dependencies = { "camspiers/luarocks" },
+		lazy = false,
+	},
+
+	{
+		"KabbAmine/zeavim.vim",
+		lazy = false,
+	},
 })
 
 -- require('plugins/init')

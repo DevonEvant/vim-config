@@ -7,7 +7,10 @@ require("mason-null-ls").setup({
 		"yamlls", --yaml
 		"stylua",
 		"yamlfmt",
-        "cmake_format",
+		"cmake_format",
+		"eslint",
+		"prettier",
+		"shfmt",
 	},
 })
 
@@ -15,16 +18,31 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
 	sources = {
+		-- lua
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.completion.spell,
-		require("none-ls.diagnostics.cpplint"),
-		require("none-ls.formatting.jq"),
-		require("none-ls.code_actions.eslint"),
 
+		-- cpp
+		require("none-ls.diagnostics.cpplint"),
+
+		-- python
 		null_ls.builtins.formatting.black,
 		-- require("null_ls.builtins.diagnostics.flake8"),
 
+		-- yaml
 		null_ls.builtins.formatting.yamlfmt,
+
+		-- cmake
 		null_ls.builtins.formatting.cmake_format,
+
+		-- javascript
+		null_ls.builtins.formatting.prettier,
+		require("none-ls.code_actions.eslint"),
+
+        -- shell script
+		null_ls.builtins.formatting.shfmt,
+
+		-- other
+		null_ls.builtins.completion.spell,
+		require("none-ls.formatting.jq"),
 	},
 })
