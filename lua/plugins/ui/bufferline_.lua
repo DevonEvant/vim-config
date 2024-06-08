@@ -6,13 +6,14 @@ require("bufferline").setup({
 	options = {
 		mode = "buffers", -- set to "tabs" to only show tabpages instead
 		numbers = function(opts)
-			return string.format(" %s.", vim.fn["tabpagenr"](), opts.ordinal)
+			return string.format("%s.", opts.ordinal)
 		end,
 		max_name_length = 15,
-		tab_size = 14,
+		tab_size = 10,
 		style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
 
 		close_command = "bdelete! %d", -- can be a string | function, | false see "Mouse actions"
+		separator_style = "slant",
 		indicator = {
 			icon = "▎", -- this should be omitted if indicator style is not 'icon'
 			style = "icon",
@@ -30,7 +31,6 @@ require("bufferline").setup({
 		duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 		move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position
-		separator_style = "slant",
 		enforce_regular_tabs = false,
 		always_show_bufferline = true,
 		auto_toggle_bufferline = true,
@@ -55,7 +55,7 @@ require("bufferline").setup({
 					level == "error" and " "
 					or (level == "warning" and " ")
 					or (level == "info" and "")
-					or ""
+					or "" -- or ""
 				) --.. count
 
 			return tab_str
@@ -67,8 +67,9 @@ require("bufferline").setup({
 			},
 			items = {
 				bufferline_group.builtin.pinned:with({ icon = "" }),
+
 				{
-					name = "Tests", -- Mandatory
+					name = "tests", -- Mandatory
 					highlight = { underline = true, sp = "blue" }, -- Optional
 					priority = 2, -- determines where it will appear relative to other groups (Optional)
 					icon = "", -- Optional
@@ -77,11 +78,18 @@ require("bufferline").setup({
 					end,
 				},
 				{
-					name = "Docs",
+					name = "docs",
 					highlight = { undercurl = true, sp = "green" },
 					auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
 					matcher = function(buf)
-						-- return buf.filename:match("%.md") or buf.filename:match("%.txt")
+						-- local matched = group.matcher(with_deprecation({
+						-- 	id = buffer.id,
+						-- 	name = buffer.name,
+						-- 	path = buffer.path,
+						-- 	modified = buffer.modified,
+						-- 	buftype = buffer.buftype,
+						-- }))
+						return buf.name:match("%.md") or buf.name:match("%.txt")
 					end,
 					separator = { -- Optional
 						style = require("bufferline.groups").separator.tab,
@@ -93,11 +101,11 @@ require("bufferline").setup({
 		custom_areas = {
 			right = function()
 				local result = {}
-				local seve = vim.diagnostic.severity
-				local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
-				local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
-				local info = #vim.diagnostic.get(0, { severity = seve.INFO })
-				local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
+				local severity = vim.diagnostic.severity
+				local error = #vim.diagnostic.get(0, { severity = severity.ERROR })
+				local warning = #vim.diagnostic.get(0, { severity = severity.WARN })
+				local info = #vim.diagnostic.get(0, { severity = severity.INFO })
+				local hint = #vim.diagnostic.get(0, { severity = severity.HINT })
 
 				if error ~= 0 then
 					table.insert(result, { text = "  " .. error, fg = "#EC5241" })
