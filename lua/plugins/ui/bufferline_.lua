@@ -24,8 +24,8 @@ require("bufferline").setup({
 		left_trunc_marker = "",
 		right_trunc_marker = "",
 		show_buffer_icons = true, -- disable filetype icons for buffers
-		show_buffer_close_icons = true,
-		show_close_icon = true,
+		show_buffer_close_icons = false,
+		show_close_icon = false,
 		show_tab_indicators = true,
 		show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
 		duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates
