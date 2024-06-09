@@ -38,11 +38,13 @@ null_ls.setup({
 		null_ls.builtins.formatting.prettier,
 		require("none-ls.code_actions.eslint"),
 
-        -- shell script
+		-- shell script
 		null_ls.builtins.formatting.shfmt,
 
 		-- other
-		null_ls.builtins.completion.spell,
+		null_ls.builtins.completion.spell.with({
+			filetypes = { "i3ConfigComment" },
+		}),
 		require("none-ls.formatting.jq"),
 	},
 })
