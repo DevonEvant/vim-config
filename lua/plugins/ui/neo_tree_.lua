@@ -99,8 +99,8 @@ require("neo-tree").setup({
 		position = "left",
 		width = 20,
 		mapping_options = {
-			noremap = true,
-			nowait = true,
+			-- noremap = true,
+			-- nowait = true,
 		},
 		mappings = {
 			["<space>"] = {
@@ -300,5 +300,3 @@ require("neo-tree").setup({
 	},
 })
 
-vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
--- })

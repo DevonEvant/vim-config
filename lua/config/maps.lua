@@ -4,57 +4,58 @@ local buf_map = vim.api.nvim_buf_set_keymap
 -- <enter> 增量选择
 
 -- inoremap
-map('i', 'jk', '<ESC>', {})
+map("i", "jk", "<ESC>", {})
 --map('i', '(', '()<ESC>i', {})
 --map('i', ''', '''<ESC>i', {})
 --map('i', ''', '''<ESC>i', {})
 --map('i', '[', '[]<ESC>i', {})
 
-map('i', '<C-h>', '<Left>', {})
-map('i', '<C-j>', '<Down>', {})
-map('i', '<C-k>', '<Up>', {})
-map('i', '<C-l>', '<Right>', {})
-map('i', '<C-d>', '<DELETE>', {})
-map('i', '<C-y>', '<CR>', {})
-map('i', '<C-e>', '<ESC>', {})
-map('i', '<C-u>', '<Esc>ui', {})
+map("i", "<C-h>", "<Left>", {})
+map("i", "<C-j>", "<Down>", {})
+map("i", "<C-k>", "<Up>", {})
+map("i", "<C-l>", "<Right>", {})
+map("i", "<C-d>", "<DELETE>", {})
+map("i", "<C-y>", "<CR>", {})
+map("i", "<C-e>", "<ESC>", {})
+map("i", "<C-u>", "<Esc>ui", {})
 
 -- nmap
-map('n', '<C-s>', '<Esc>:w<CR>', {})
-map('n', '<C-s>a', '<Esc>:wa<CR>', {})
-map('n', '<C-s>5', '<Esc>:w<CR>:so %<CR>', {})
-map('i', '<C-s>', '<Esc>:w<CR>a', {})
-map('i', '<C-s>a', '<Esc>:wa<CR>a', {})
-map('i', '<C-s>5', '<Esc>:w<CR>:so %<CR>', {})
+map("n", "<C-s>", "<Esc>:w<CR>", {})
+map("n", "<C-s>a", "<Esc>:wa<CR>", {})
+map("n", "<C-s>5", "<Esc>:w<CR>:so %<CR>", {})
+map("i", "<C-s>", "<Esc>:w<CR>a", {})
+map("i", "<C-s>a", "<Esc>:wa<CR>a", {})
+map("i", "<C-s>5", "<Esc>:w<CR>:so %<CR>", {})
 
 -- nmap
-map('n', 'da', '<Esc>ggdG', {})
-map('n', 'ya', '<Esc>ggyG', {})
-map('n', 'va', '<Esc>gg0vG$', {})
-map('n', '<C-w>qq', '<Esc>:q<CR>', {})
-map('n', '<C-w>q1', '<Esc>:q!<CR>', {})
-map('n', '<C-w>qa', '<Esc>:qa<CR>', {})
-map('n', '<C-w>qa1', '<Esc>:qa!<CR>', {})
-map('n', 'U', '<C-r>', { noremap = true })
+map("n", "da", "<Esc>ggdG", {})
+map("n", "ya", "<Esc>ggyG", {})
+map("n", "va", "<Esc>gg0vG$", {})
+map("n", "<C-w>qq", "<Esc>:q<CR>", {})
+map("n", "<C-w>q1", "<Esc>:q!<CR>", {})
+map("n", "<C-w>qa", "<Esc>:qa<CR>", {})
+map("n", "<C-w>qa1", "<Esc>:qa!<CR>", {})
+map("n", "U", "<C-r>", { noremap = true })
 
 -- inoremap
-map('i', string.char(31), '<Esc>\\cia', {})
-map('n', string.char(31), '\\ci', {})
+map("i", string.char(31), "<Esc>\\cia", {})
+map("n", string.char(31), "\\ci", {})
 
 -- Easymotion 配置
 vim.g.EasyMotion_do_mapping = 0
-map('n', '<Leader>f', '<Plug>(easymotion-bd-f)', {})
+vim.g.EasyMotion_smartcase = 1
+map("n", "<Leader>f", "<Plug>(easymotion-bd-f)", {})
 -- map('n', '<Leader>s', '<Plug>(easymotion-s2)', {})
-map('n', '<Leader>L', '<Plug>(easymotion-bd-jk)', {})
-map('n', '<Leader>w', '<Plug>(easymotion-bd-w)', {})
-map('n', '/', '<Plug>(easymotion-sn)', {})
-map('o', '/', '<Plug>(easymotion-tn)', {})
-map('n', 'n', '<Plug>(easymotion-next)', {})
-map('n', 'N', '<Plug>(easymotion-prev)', {})
-map('n', '<Leader>l', '<Plug>(easymotion-lineforward)', {})
-map('n', '<Leader>j', '<Plug>(easymotion-j)', {})
-map('n', '<Leader>k', '<Plug>(easymotion-k)', {})
-map('n', '<Leader>h', '<Plug>(easymotion-linebackward)', {})
+map("n", "<Leader>L", "<Plug>(easymotion-bd-jk)", {})
+map("n", "<Leader>w", "<Plug>(easymotion-bd-w)", {})
+map("n", "/", "<Plug>(easymotion-sn)", {})
+map("o", "/", "<Plug>(easymotion-tn)", {})
+map("n", "n", "<Plug>(easymotion-next)", {})
+map("n", "N", "<Plug>(easymotion-prev)", {})
+map("n", "<Leader>l", "<Plug>(easymotion-lineforward)", {})
+map("n", "<Leader>j", "<Plug>(easymotion-j)", {})
+map("n", "<Leader>k", "<Plug>(easymotion-k)", {})
+map("n", "<Leader>h", "<Plug>(easymotion-linebackward)", {})
 
 -- -- 设置切换标签页的快捷键 <leader> + <i> 切换到第i个标签页
 -- map('n', '<Leader>1', '<Plug>AirlineSelectTab1', {})
@@ -74,53 +75,53 @@ map('n', '<Leader>h', '<Plug>(easymotion-linebackward)', {})
 -- map('n', '<Leader>q', ':bp<cr>:bd #<cr>', {})
 
 -- Tabularize 快捷键设置
-map('n', ',=', ':Tabularize /^[^=]*\\zs=<CR>', {})
-map('v', ',=', ':Tabularize /^[^=]*\\zs=<CR>', {})
-map('n', ',==', ':Tabularize /^[^=]*\\zs=/r0c0l0<CR>', {})
-map('v', ',==', ':Tabularize /^[^=]*\\zs=/r0c0l0<CR>', {})
-map('n', ',:', ':Tabularize /:\\zs<CR>', {})
-map('v', ',:', ':Tabularize /:\\zs<CR>', {})
-map('n', ',|', ':Tabularize /|<CR>', {})
-map('v', ',|', ':Tabularize /|<CR>', {})
-map('n', ',,', ':Tabularize /,<CR>', {})
-map('v', ',,', ':Tabularize /,<CR>', {})
-map('n', ',<', ':Tabularize /^[^<]*\\zs</l1r0<CR>', {})
-map('v', ',<', ':Tabularize /^[^<]*\\zs</l1r0<CR>', {})
-map('n', ',;', ':Tabularize /^[^;]*\\zs;/l0r0<CR>', {})
-map('v', ',;', ':Tabularize /^[^;]*\\zs;/l0r0<CR>', {})
-map('n', ',)', ':Tabularize /^[^)]*\\zs)/l0r0<CR>', {})
-map('v', ',)', ':Tabularize /^[^)]*\\zs)/l0r0<CR>', {})
-map('n', ',}', ':Tabularize /^[^}]*\\zs}/l0r1<CR>', {})
-map('v', ',}', ':Tabularize /^[^}]*\\zs}/l0r1<CR>', {})
-map('n', ',{', ':Tabularize /^[^{]*\\zs{/l1r0<CR>', {})
-map('v', ',{', ':Tabularize /^[^{]*\\zs{/l1r0<CR>', {})
+map("n", ",=", ":Tabularize /^[^=]*\\zs=<CR>", {})
+map("v", ",=", ":Tabularize /^[^=]*\\zs=<CR>", {})
+map("n", ",==", ":Tabularize /^[^=]*\\zs=/r0c0l0<CR>", {})
+map("v", ",==", ":Tabularize /^[^=]*\\zs=/r0c0l0<CR>", {})
+map("n", ",:", ":Tabularize /:\\zs<CR>", {})
+map("v", ",:", ":Tabularize /:\\zs<CR>", {})
+map("n", ",|", ":Tabularize /|<CR>", {})
+map("v", ",|", ":Tabularize /|<CR>", {})
+map("n", ",,", ":Tabularize /,<CR>", {})
+map("v", ",,", ":Tabularize /,<CR>", {})
+map("n", ",<", ":Tabularize /^[^<]*\\zs</l1r0<CR>", {})
+map("v", ",<", ":Tabularize /^[^<]*\\zs</l1r0<CR>", {})
+map("n", ",;", ":Tabularize /^[^;]*\\zs;/l0r0<CR>", {})
+map("v", ",;", ":Tabularize /^[^;]*\\zs;/l0r0<CR>", {})
+map("n", ",)", ":Tabularize /^[^)]*\\zs)/l0r0<CR>", {})
+map("v", ",)", ":Tabularize /^[^)]*\\zs)/l0r0<CR>", {})
+map("n", ",}", ":Tabularize /^[^}]*\\zs}/l0r1<CR>", {})
+map("v", ",}", ":Tabularize /^[^}]*\\zs}/l0r1<CR>", {})
+map("n", ",{", ":Tabularize /^[^{]*\\zs{/l1r0<CR>", {})
+map("v", ",{", ":Tabularize /^[^{]*\\zs{/l1r0<CR>", {})
 
 -- j/k will move virtual lines (lines that wrap)
-map('n', 'j', '(v:count == 0 ? "gj" : "j")', { expr = true, silent = true })
-map('n', 'k', '(v:count == 0 ? "gk" : "k")', { expr = true, silent = true })
+map("n", "j", '(v:count == 0 ? "gj" : "j")', { expr = true, silent = true })
+map("n", "k", '(v:count == 0 ? "gk" : "k")', { expr = true, silent = true })
 
 -- Shift+Arrow selection
-map('n', '<S-Up>', 'v<Up>', {})
-map('n', '<S-Down>', 'v<Down>', {})
-map('n', '<S-Left>', 'v<Left>', {})
-map('n', '<S-Right>', 'v<Right>', {})
-map('v', '<S-Up>', '<Up>', {})
-map('v', '<S-Down>', '<Down>', {})
-map('v', '<S-Left>', '<Left>', {})
-map('v', '<S-Right>', '<Right>', {})
-map('i', '<S-Up>', '<Esc>v<Up>', {})
-map('i', '<S-Down>', '<Esc>v<Down>', {})
-map('i', '<S-Left>', '<Esc>v<Left>', {})
-map('i', '<S-Right>', '<Esc>v<Right>', {})
+map("n", "<S-Up>", "v<Up>", {})
+map("n", "<S-Down>", "v<Down>", {})
+map("n", "<S-Left>", "v<Left>", {})
+map("n", "<S-Right>", "v<Right>", {})
+map("v", "<S-Up>", "<Up>", {})
+map("v", "<S-Down>", "<Down>", {})
+map("v", "<S-Left>", "<Left>", {})
+map("v", "<S-Right>", "<Right>", {})
+map("i", "<S-Up>", "<Esc>v<Up>", {})
+map("i", "<S-Down>", "<Esc>v<Down>", {})
+map("i", "<S-Left>", "<Esc>v<Left>", {})
+map("i", "<S-Right>", "<Esc>v<Right>", {})
 
 -- Visual mode mappings
-map('v', '<C-c>', 'y<Esc>i', {})
-map('v', '<C-x>', 'd<Esc>i', {})
-map('i', '<C-v>', '<Esc>pi', {})
+map("v", "<C-c>", "y<Esc>i", {})
+map("v", "<C-x>", "d<Esc>i", {})
+map("i", "<C-v>", "<Esc>pi", {})
 
 -- Use <Tab> and <S-Tab> to navigate the completion list
-map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
-map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
+map("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
+map("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
 -- Use <Ctrl-F> to format documents with prettier
 -- vim.cmd('command! -nargs=0 Prettier :CocCommand prettier.formatFile')
@@ -144,94 +145,94 @@ map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
 -- 跳转到声明
 -- 预览光标下符号的定义
-map('n', 'gdp', '<cmd>Lspsaga peek_definition<CR>', { silent = true, noremap = true })
+map("n", "gdp", "<cmd>Lspsaga peek_definition<CR>", { silent = true, noremap = true })
 -- 跳转到光标下符号的定义处
-map('n', 'gdl', '<cmd>lua vim.lsp.buf.definition()<CR>', { silent = true, noremap = true })
+map("n", "gdl", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true })
 -- 当前位置的诊断信息
-map('n', 'gdc', '<cmd>Lspsaga show_cursor_diagnostics<CR>', { silent = true, noremap = true })
+map("n", "gdc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true, noremap = true })
 -- 当前行的诊断信息
-map('n', 'gdl', '<cmd>Lspsaga show_line_diagnostics<CR>', { silent = true, noremap = true })
+map("n", "gdl", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true, noremap = true })
 -- 跳轉到當前光標位置的下一個診斷信息位置
-map('n', 'gdo', '<cmd>lua vim.diagnostic.open_float()<CR>', { silent = true, noremap = true })
+map("n", "gdo", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, noremap = true })
 -- 跳轉到當前光標位置的上一個診斷信息位置
-map('n', 'gdN', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { silent = true, noremap = true })
+map("n", "gdN", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { silent = true, noremap = true })
 -- 跳轉到當前光標位置的下一個診斷信息位置
-map('n', 'gdn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { silent = true, noremap = true })
+map("n", "gdn", "<cmd>lua vim.diagnostic.goto_next()<CR>", { silent = true, noremap = true })
 -- define search 调用外部文档查阅工具 Zeal 来查询光标下的单词
 -- map('n', 'gds', '<cmd>!zeal '<cword>'&<CR><CR>', {})
 
 -- Finder
-map('n', 'gf', '<cmd>Lspsaga finder<CR>', { silent = true, noremap = true })
+map("n", "gf", "<cmd>Lspsaga finder<CR>", { silent = true, noremap = true })
 -- finder
-map('n', 'gfi', '<cmd>Lspsaga finder imp<CR>', { silent = true, noremap = true })
+map("n", "gfi", "<cmd>Lspsaga finder imp<CR>", { silent = true, noremap = true })
 
 -- Formatter
-map('n', 'gF', '<cmd>lua vim.lsp.buf.format()<CR>', { silent = true, noremap = true })
+map("n", "gF", "<cmd>lua vim.lsp.buf.format()<CR>", { silent = true, noremap = true })
 -- Formatter ans Save
-map('n', 'gFs', '<cmd>lua vim.lsp.buf.format()<CR><cmd>w<CR>', { silent = true, noremap = true })
+map("n", "gFs", "<cmd>lua vim.lsp.buf.format()<CR><cmd>w<CR>", { silent = true, noremap = true })
 
 -- mouse pointer hover
-map('n', 'gh', '<cmd>Lspsaga hover_doc<CR>', {})
+map("n", "gh", "<cmd>Lspsaga hover_doc<CR>", {})
 
 -- 這個命令顯示所有調用當前光標下符號的地方
-map('n', 'gci', '<cmd>Lspsaga incoming_calls<CR>', {})
+map("n", "gci", "<cmd>Lspsaga incoming_calls<CR>", {})
 -- 這個命令顯示當前光標下的符號調用了哪些其他符號
-map('n', 'gco', '<cmd>Lspsaga outgoing_calls<CR>', {})
+map("n", "gco", "<cmd>Lspsaga outgoing_calls<CR>", {})
 
 -- rename
-map('n', 'gr', '<cmd>Lspsaga rename<CR>', { silent = true, noremap = true })
+map("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
 
 -- code action
-vim.keymap.set({ 'n', 'v' }, 'ga', '<cmd>Lspsaga code_action<CR>', { silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
 
 -- git status
 -- gg
 -- G
-map('n', 'gG', ':Neotree toggle git_status<CR>', {})
+map("n", "gG", ":Neotree toggle git_status<CR>", {})
 
 -- Error detact
-vim.keymap.set('n', 'gxx', function()
-	require('trouble').toggle()
+vim.keymap.set("n", "gxx", function()
+	require("trouble").toggle()
 end)
-vim.keymap.set('n', 'gxw', function()
-	require('trouble').toggle('workspace_diagnostics')
+vim.keymap.set("n", "gxw", function()
+	require("trouble").toggle("workspace_diagnostics")
 end)
-vim.keymap.set('n', 'gxd', function()
-	require('trouble').toggle('document_diagnostics')
+vim.keymap.set("n", "gxd", function()
+	require("trouble").toggle("document_diagnostics")
 end)
-vim.keymap.set('n', 'gxq', function()
-	require('trouble').toggle('quickfix')
+vim.keymap.set("n", "gxq", function()
+	require("trouble").toggle("quickfix")
 end)
-vim.keymap.set('n', 'gxl', function()
-	require('trouble').toggle('loclist')
+vim.keymap.set("n", "gxl", function()
+	require("trouble").toggle("loclist")
 end)
-vim.keymap.set('n', 'gxr', function()
-	require('trouble').toggle('lsp_references')
+vim.keymap.set("n", "gxr", function()
+	require("trouble").toggle("lsp_references")
 end)
 
 -- deBug tool
-vim.keymap.set('n', 'gbc', require('dap').continue)
-vim.keymap.set('n', 'gbn', require('dap').step_over)
-vim.keymap.set('n', 'gbN', require('dap').step_into)
-vim.keymap.set('n', 'gbo', require('dap').step_out)
-vim.keymap.set('n', 'gbb', require('dap').toggle_breakpoint)
+vim.keymap.set("n", "gbc", require("dap").continue)
+vim.keymap.set("n", "gbn", require("dap").step_over)
+vim.keymap.set("n", "gbN", require("dap").step_into)
+vim.keymap.set("n", "gbo", require("dap").step_out)
+vim.keymap.set("n", "gbb", require("dap").toggle_breakpoint)
 
 --
-vim.keymap.set('n', 'gl', ':TlistToggle<CR>', {})
+vim.keymap.set("n", "gl", ":TlistToggle<CR>", {})
 
 -- zip
 -- 使用 :set foldenable! 命令切換折疊功能。
 -- 使用 zo 命令展開折疊，使用 zc 命令折疊代碼塊。
 -- 使用 :set foldcolumn=0 可以暫時關閉折疊列顯示，這樣你可以更容易地看到折疊狀態。
-vim.keymap.set('n', 'gz', 'za', {})
+vim.keymap.set("n", "gz", "za", {})
 
 -- telescope
 -- local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>p', ':Telescope find_files<CR>', {})
-vim.keymap.set('n', '<C-p><C-p>', ':Telescope find_files<CR>', {})
-vim.keymap.set('n', '<C-p>', ':Telescope ', {})
+vim.keymap.set("n", "<C-p>p", ":Telescope find_files<CR>", {})
+vim.keymap.set("n", "<C-p><C-p>", ":Telescope find_files<CR>", {})
+vim.keymap.set("n", "<C-p>", ":Telescope ", {})
 
-require('gitsigns').setup()
+require("gitsigns").setup()
 local gs = package.loaded.gitsigns
 -- stylua: ignore start
 vim.keymap.set('n', 'gt[', gs.next_hunk, { desc = 'Next Hunk' })
