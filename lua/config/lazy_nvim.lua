@@ -379,6 +379,14 @@ LazyVim.setup({
 		"KabbAmine/zeavim.vim",
 		lazy = false,
 	},
+
+	-- {
+	-- 	"RishabhRD/nvim-cheat.sh",
+	-- 	dependencies = {
+	-- 		{ "RishabhRD/popfix" },
+	-- 	},
+	-- 	lazy = false,
+	-- },
 })
 
 -- require('plugins/init')

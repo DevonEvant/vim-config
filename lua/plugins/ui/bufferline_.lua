@@ -1,7 +1,9 @@
 local bufferline = require("bufferline")
 local bufferline_group = require("bufferline.groups")
 
+vim.diagnostic.config { update_in_insert = true }
 vim.opt.termguicolors = true
+
 require("bufferline").setup({
 	options = {
 		mode = "buffers", -- set to "tabs" to only show tabpages instead
@@ -41,7 +43,7 @@ require("bufferline").setup({
 		},
 
 		diagnostics = "nvim_lsp",
-		diagnostics_update_in_insert = true,
+		-- diagnostics_update_in_insert = true,
 		diagnostics_indicator = function(count, level, diagnostics_dict, context)
 			local tab_str = ""
 

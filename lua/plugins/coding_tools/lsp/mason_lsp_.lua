@@ -1,6 +1,5 @@
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 vim.lsp.set_log_level("OFF", "svlangserver")
 --vim.lsp.set_log_level("TRACE")
 
@@ -16,7 +15,7 @@ require("mason-lspconfig").setup({
 		"pyright",
 		"verible",
 		"svls",
-		"tsserver", -- typescript
+		"ts_ls", -- typescript
 		"quick_lint_js", --js
 		"html", --html
 		"svlangserver",
@@ -206,12 +205,34 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 
-	["tsserver"] = function()
-		lspconfig.tsserver.setup({
-			filetypes = { "typescript", "typescriptreact" },
+	["ts_ls"] = function()
+		lspconfig.ts_ls.setup({
+			filetypes = {
+				"javascript",
+				"javascriptreact",
+				"javascript.jsx",
+				"typescript",
+				"typescriptreact",
+				"typescript.tsx",
+			},
+			root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
+			init_options = {
+				hostInfo = "neovim",
+				plugins = {
+					{
+						-- name = "@vue/typescript-plugin",
+						-- location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+						-- languages = { "javascript", "typescript", "vue" },
+					},
+				},
+			},
+			single_file_support = true,
 		})
 	end,
 
+	-- You must make sure volar is setup
+	-- e.g. require'lspconfig'.volar.setup{}
+	-- See volar's section for more information
 	["html"] = function()
 		lspconfig.html.setup({
 			filetypes = { "html" },
