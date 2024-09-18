@@ -5,7 +5,7 @@ vim.cmd("set termguicolors")
 vim.o.cindent = true
 
 -- 在 vimenter 自動執行命令
-vim.cmd("autocmd vimenter * ++nested colorscheme gruvbox")
+-- vim.cmd("autocmd vimenter * ++nested colorscheme gruvbox")
 
 -- 設置編碼為 UTF-8
 vim.o.encoding = "utf8"

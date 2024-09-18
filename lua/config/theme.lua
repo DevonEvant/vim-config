@@ -1,6 +1,6 @@
 
 -- 設置主題為 gruvbox
-vim.cmd('colorscheme gruvbox')
+-- vim.cmd('colorscheme gruvbox')
 
 -- 設置背景為暗色系
 vim.o.background = 'dark'

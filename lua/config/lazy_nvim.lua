@@ -1,13 +1,24 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	vim.fn.system({
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({
 		"git",
 		"clone",
 		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
+		lazyrepo,
 		lazypath,
 	})
+
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -15,378 +26,231 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
 
-local LazyVim = require("lazy")
-
-LazyVim.setup({
-	-- {
-	--     "nvim-tree/nvim-tree.lua",
-	--     version = "*",
-	--     lazy = false,
-	--     dependencies = {
-	--         "nvim-tree/nvim-web-devicons",
-	--     },
-	--     config = function()
-	--         require("nvim-tree").setup {}
-	--     end,
-	-- },
-
-	{
-		"MunifTanjim/nui.nvim",
-		lazy = true,
+require("lazy").setup({
+	spec = {
+		-- add LazyVim and import its plugins
+		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		-- import/override with your plugins
+		-- { import = "plugins" },
 	},
-
-	{
-		"akinsho/bufferline.nvim",
-		requires = "nvim-tree/nvim-web-devicons",
-		-- config = function()
-		-- require('plugins/bufferline_')
-		-- end,
-	},
-
-	-- {
-	--     'preservim/nerdcommenter',
-	--     lazy = false,
-	-- },
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
+	defaults = {
+		-- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+		-- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
 		lazy = false,
+		-- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
+		-- have outdated releases, which may break your Neovim install.
+		version = false, -- always use the latest git commit
+		-- version   defaults = {
+		-- autocmds = true, -- lazyvim.config.autocmds
+		keymaps = false, -- lazyvim.config.keymaps= "*", -- try installing the latest stable version for plugins that support semver
 	},
 
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
-		},
-		-- config = function()
-		--     require("your.null-ls.config") -- require your null-ls config here (example below)
-		-- end,
-	},
-	{
-		"nvimtools/none-ls.nvim",
-		dependencies = {
-			"nvimtools/none-ls-extras.nvim",
-		},
-		-- opts = function(_, opts)
-		--     local null_ls = require('null-ls').builtins
-		--     opts.sources = {
-		--     }
-		--     return opts
-		-- end
-	},
-
-	{ "morhetz/gruvbox" },
-
-	{ "godlygeek/tabular" },
-
-	{ "Chiel92/vim-autoformat" },
-
-	{ "HerringtonDarkholme/yats.vim" },
-
-	{ "Yggdroot/indentLine" },
-
-	{ "christoomey/vim-tmux-navigator" },
-
-	{ "ctrlpvim/ctrlp.vim" },
-
-	{ "dense-analysis/ale" },
-
-	{ "easymotion/vim-easymotion" },
-
-	{ "honza/vim-snippets" },
-
-	{ "tpope/vim-surround" },
-
-	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	},
-
-	{ "mhinz/neovim-remote" },
-
-	{
-		"lervag/vimtex",
-		lazy = false, -- we don't want to lazy load VimTeX
-		opt = true,
-		ft = "tex",
-	},
-
-	{
-		"junegunn/fzf",
-		dir = "~/.fzf",
-		run = "./install --all",
-	},
-
-	{ "junegunn/vim-easy-align" },
-
-	{ "luochen1990/rainbow" },
-
-	{ "mattn/emmet-vim" },
-
-	{ "puremourning/vimspector" },
-
-	{ "rafi/awesome-vim-colorschemes" },
-
-	{ "ryanoasis/vim-devicons" },
-
-	--[[
-	{ "sheerun/vim-polyglot" },
-    --]]
-
-	{ "tomasiser/vim-code-dark" },
-
-	{ "vhda/verilog_systemverilog.vim" },
-
-	{ "vim-airline/vim-airline" },
-
-	{ "vim-airline/vim-airline-themes" },
-
-	{ "simrat39/symbols-outline.nvim" },
-
-	{ "nvim-lua/plenary.nvim" },
-
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+	install = { colorscheme = { "tokyonight", "habamax" } },
+	checker = {
+		enabled = true, -- check for plugin updates periodically
+		notify = false, -- notify on update
+	}, -- automatically check for plugin updates
+	performance = {
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				"flash.nvim",
+			},
 		},
 	},
-
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
-
-	{ "hrsh7th/nvim-cmp" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-path" },
-	{ "hrsh7th/cmp-cmdline" },
-	{ "hrsh7th/cmp-vsnip" },
-	{ "hrsh7th/vim-vsnip" },
-
-	{ "mfussenegger/nvim-dap" },
-
-	{
-		"nvimdev/lspsaga.nvim",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
-		},
-	},
-
-	{ "rafamadriz/friendly-snippets" },
-
-	{
-		"L3MON4D3/LuaSnip",
-		-- follow latest release.
-		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!).
-		build = "make install_jsregexp",
-	},
-
-	{ "onsails/lspkind-nvim" },
-
-	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		config = true,
-	},
-
-	{
-		"kawre/leetcode.nvim",
-		build = ":TSUpdate html",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim", -- required by telescope
-			"MunifTanjim/nui.nvim",
-
-			-- optional
-			"nvim-treesitter/nvim-treesitter",
-			"rcarriga/nvim-notify",
-			"nvim-tree/nvim-web-devicons",
-		},
-		opts = {
-			-- configuration goes here
-		},
-	},
-
-	{ "LunarVim/bigfile.nvim" },
-
-	{ "norcalli/nvim-colorizer.lua" },
-
-	{ "rcarriga/nvim-notify" },
-
-	{
-		"abecodes/tabout.nvim",
-		lazy = false,
-		dependencies = { -- These are optional
-			"nvim-treesitter/nvim-treesitter",
-			"L3MON4D3/LuaSnip",
-			"hrsh7th/nvim-cmp",
-		},
-		opt = true, -- Set this to true if the plugin is optional
-		event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
-		priority = 1000,
-	},
-
-	-- { 'jpalardy/vim-slime',        ft = 'python' },
-
-	-- { 'hanschen/vim-ipython-cell', ft = 'python' },
-
-	-- {
-	-- 'ahmedkhalf/jupyter-nvim',
-	-- run = ':UpdateRemotePlugins',
-	-- },
-
-	{ "hkupty/iron.nvim" },
-	-- {
-	-- 	"kana/vim-textobj-user",
-	-- 	dependencies = { "Julian/vim-textobj-variable-segment" },
-	-- 	lazy = false,
-	-- },
-	-- {
-	-- 	"kana/vim-textobj-line",
-	-- 	dependencies = { "Julian/vim-textobj-variable-segment" },
-	-- 	lazy = false,
-	-- },
-	-- {
-	-- 	"GCBallesteros/vim-textobj-hydrogen",
-	-- 	dependencies = {
-	-- 		"kana/vim-textobj-user",
-	-- 		"kana/vim-textobj-line",
-	-- 	},
-	-- },
-	-- {
-	-- 	"GCBallesteros/jupytext.nvim",
-	-- 	dependencies = {
-	-- 		"GCBallesteros/vim-textobj-hydrogen",
-	-- 		"kana/vim-textobj-user",
-	-- 		"kana/vim-textobj-line",
-	-- 	},
-	-- },
-
-	{ "simrat39/rust-tools.nvim" },
-
-	{ "sbdchd/neoformat" },
-
-	{ "voldikss/vim-floaterm" },
-
-	{ "HonkW93/automatic-verilog" },
-
-	{ "lewis6991/gitsigns.nvim" },
-
-	-- {
-	--     "vhyrro/luarocks.nvim",
-	--     priority = 1001, -- this plugin needs to run before anything else
-	--     opts = {
-	--         rocks = { "magick" },
-	--     },
-	-- },
-	-- {
-	--     "3rd/image.nvim",
-	--     dependencies = { "luarocks.nvim" },
-	--     config = function()
-	--         -- ...
-	--     end
-	-- },
-	{
-		"s1n7ax/nvim-window-picker",
-		name = "window-picker",
-		event = "VeryLazy",
-		version = "2.*",
-	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-			-- "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
-		},
-	},
-
-	{
-		"rebelot/heirline.nvim",
-		-- You can optionally lazy-load heirline on UiEnter
-		-- to make sure all required plugins and colorschemes are loaded before setup
-		event = "UiEnter",
-	},
-
-	{
-		"Pocco81/DAPInstall.nvim",
-	},
-
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
-	{
-		"nvim-telescope/telescope.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	},
-
-	{
-		"echasnovski/mini.nvim",
-		version = "false",
-	},
-
-	{
-		"theHamsta/nvim-dap-virtual-text",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
-	},
-	{
-		"folke/neodev.nvim",
-		dependencies = { "nvim-dap-ui", "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-	},
-	{
-		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-	},
-	{
-		"williamboman/mason.nvim",
-		"mfussenegger/nvim-dap",
-		"jay-babu/mason-nvim-dap.nvim",
-	},
-	{ "mfussenegger/nvim-dap" },
-	{
-		"mfussenegger/nvim-dap-python",
-		dependencies = { "mfussenegger/nvim-dap" },
-	},
-
-	{ "vim-scripts/taglist.vim" },
-
-	{
-		"camspiers/luarocks",
-		opts = { rocks = { "fzy" } },
-	},
-	{
-		"camspiers/snap",
-		dependencies = { "camspiers/luarocks" },
-		lazy = false,
-	},
-
-	{
-		"KabbAmine/zeavim.vim",
-		lazy = false,
-	},
-
-	-- {
-	-- 	"RishabhRD/nvim-cheat.sh",
-	-- 	dependencies = {
-	-- 		{ "RishabhRD/popfix" },
-	-- 	},
-	-- 	lazy = false,
-	-- },
 })
 
--- require('plugins/init')
+-- local LazyVim = require("lazy")
+-- LazyVim.setup({
+-- 	-- {
+-- 	--     "nvim-tree/nvim-tree.lua",
+-- 	--     version = "*",
+-- 	--     lazy = false,
+-- 	--     dependencies = {
+-- 	--         "nvim-tree/nvim-web-devicons",
+-- 	--     },
+-- 	--     config = function()
+-- 	--         require("nvim-tree").setup {}
+-- 	--     end,
+-- 	-- },
+--
+-- 	{
+-- 		"MunifTanjim/nui.nvim",
+-- 		lazy = true,
+-- 	},
+--
+-- 	{
+-- 		"akinsho/bufferline.nvim",
+-- 		requires = "nvim-tree/nvim-web-devicons",
+-- 		-- config = function()
+-- 		-- require('plugins/bufferline_')
+-- 		-- end,
+-- 	},
+--
+-- 	-- {
+-- 	--     'preservim/nerdcommenter',
+-- 	--     lazy = false,
+-- 	-- },
+--
+--
+-- 	{ "morhetz/gruvbox" },
+--
+-- 	{ "godlygeek/tabular" },
+--
+-- 	{ "Chiel92/vim-autoformat" },
+--
+-- 	{ "HerringtonDarkholme/yats.vim" },
+--
+--
+-- 	{ "christoomey/vim-tmux-navigator" },
+--
+-- 	{ "ctrlpvim/ctrlp.vim" },
+--
+-- 	{ "dense-analysis/ale" },
+--
+-- 	{ "easymotion/vim-easymotion" },
+--
+-- 	{ "honza/vim-snippets" },
+--
+-- 	{ "tpope/vim-surround" },
+--
+-- 	{
+-- 		"iamcco/markdown-preview.nvim",
+-- 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+-- 		ft = { "markdown" },
+-- 		build = function()
+-- 			vim.fn["mkdp#util#install"]()
+-- 		end,
+-- 	},
+--
+-- 	{ "mhinz/neovim-remote" },
+--
+--
+-- 	{
+-- 		"junegunn/fzf",
+-- 		dir = "~/.fzf",
+-- 		run = "./install --all",
+-- 	},
+--
+-- 	{ "junegunn/vim-easy-align" },
+--
+-- 	{ "luochen1990/rainbow" },
+--
+-- 	{ "mattn/emmet-vim" },
+--
+-- 	{ "puremourning/vimspector" },
+--
+-- 	{ "rafi/awesome-vim-colorschemes" },
+--
+-- 	{ "ryanoasis/vim-devicons" },
+--
+-- 	--[[
+-- 	{ "sheerun/vim-polyglot" },
+--     --]]
+--
+-- 	{ "tomasiser/vim-code-dark" },
+--
+-- 	{ "vhda/verilog_systemverilog.vim" },
+--
+--
+-- 	{ "simrat39/symbols-outline.nvim" },
+--
+-- 	{ "nvim-lua/plenary.nvim" },
+--
+--
+--
+--
+--
+--
+-- 	{ "rafamadriz/friendly-snippets" },
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+-- 	{ "hkupty/iron.nvim" },
+-- 	-- {
+-- 	-- 	"kana/vim-textobj-user",
+-- 	-- 	dependencies = { "Julian/vim-textobj-variable-segment" },
+-- 	-- 	lazy = false,
+-- 	-- },
+-- 	-- {
+-- 	-- 	"kana/vim-textobj-line",
+-- 	-- 	dependencies = { "Julian/vim-textobj-variable-segment" },
+-- 	-- 	lazy = false,
+-- 	-- },
+-- 	-- {
+-- 	-- 	"GCBallesteros/vim-textobj-hydrogen",
+-- 	-- 	dependencies = {
+-- 	-- 		"kana/vim-textobj-user",
+-- 	-- 		"kana/vim-textobj-line",
+-- 	-- 	},
+-- 	-- },
+--
+--
+--
+--
+-- 	{ "HonkW93/automatic-verilog" },
+--
+--
+-- 	-- {
+-- 	--     "vhyrro/luarocks.nvim",
+-- 	--     priority = 1001, -- this plugin needs to run before anything else
+-- 	--     opts = {
+-- 	--         rocks = { "magick" },
+-- 	--     },
+-- 	-- },
+-- 	-- {
+-- 	--     "3rd/image.nvim",
+-- 	--     dependencies = { "luarocks.nvim" },
+-- 	--     config = function()
+-- 	--         -- ...
+-- 	--     end
+-- 	-- },
+--
+--
+-- 	{
+-- 		"Pocco81/DAPInstall.nvim",
+-- 	},
+--
+--
+--
+-- 	{
+-- 		"theHamsta/nvim-dap-virtual-text",
+-- 		dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
+-- 	},
+-- 	{
+-- 		"folke/neodev.nvim",
+-- 		dependencies = { "nvim-dap-ui", "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+-- 	},
+-- 	{
+-- 		"mfussenegger/nvim-dap-python",
+-- 		dependencies = { "mfussenegger/nvim-dap" },
+-- 	},
+--
+-- 	{ "vim-scripts/taglist.vim" },
+--
+-- 	{
+-- 		"camspiers/luarocks",
+-- 		opts = { rocks = { "fzy" } },
+-- 	},
+--
+--
+-- })
+--
+-- -- require('plugins/init')

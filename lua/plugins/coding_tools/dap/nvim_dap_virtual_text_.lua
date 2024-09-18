@@ -1,6 +1,4 @@
 
-local dap = require("dap")
-local dapui = require("dapui")
 local neodev = require("neodev")
 
 require("nvim-dap-virtual-text").setup({
