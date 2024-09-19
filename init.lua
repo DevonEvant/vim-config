@@ -42,6 +42,7 @@ end
 -- require('statusline') -- lua/statusline.lua
 -- require('theme')
 -- require('settings')
+
 dofile(vim.fn.stdpath("config") .. "/lua/config/lazy_nvim.lua")
 dofile_recursively(vim.fn.stdpath("config") .. "/lua/config/", function(_, file)
 	-- if filepath:match("%.lua$") then

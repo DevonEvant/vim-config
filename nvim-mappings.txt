@@ -1,0 +1,34 @@
+
+n  <CR>         @<Plug>NetrwLocalBrowseCheck
+n  %            @<Plug>NetrwOpenFile
+n  -            @<Plug>NetrwBrowseUpDir
+n  C            @<Plug>NetrwSetChgwin
+v  D           *@:call <SNR>31_NetrwLocalRm("/home/noi/.config/nvim")<CR>
+n  D           *@:call <SNR>31_NetrwLocalRm("/home/noi/.config/nvim")<CR>
+n  I           *@:<C-U>call <SNR>31_NetrwBannerCtrl(1)<CR>
+n  O           *@:<C-U>call <SNR>31_NetrwObtain(1)<CR>
+n  P           *@:<C-U>call <SNR>31_NetrwPrevWinOpen(1)<CR>
+v  R           *@:call <SNR>31_NetrwLocalRename("/home/noi/.config/nvim")<CR>
+n  R           *@:call <SNR>31_NetrwLocalRename("/home/noi/.config/nvim")<CR>
+n  S           *@:<C-U>call <SNR>31_NetSortSequence(1)<CR>
+n  Th          *@:<C-U>call <SNR>31_NetrwSetTgt(1,'h',v:count)<CR>
+n  Tb          *@:<C-U>call <SNR>31_NetrwSetTgt(1,'b',v:count1)<CR>
+n  U           *@:<C-U>call <SNR>31_NetrwBookHistHandler(5,expand("%"))<CR>
+n  X           *@:<C-U>call <SNR>31_NetrwLocalExecute(expand("<cword>"))"<CR>
+n  a            @<Plug>NetrwHide_a
+n  cd           @<Plug>NetrwLcd
+n  cB           @<Plug>NetrwBadd_cB
+n  cb           @<Plug>NetrwBadd_cb
+n  d           *@:call <SNR>31_NetrwMakeDir("")<CR>
+n  gp          *@:<C-U>call <SNR>31_NetrwChgPerm(1,b:netrw_curdir)<CR>
+n  gn          *@:<C-U>call netrw#SetTreetop(0,<SNR>31_NetrwGetWord())<CR>
+n  gh          *@:<C-U>call <SNR>31_NetrwHidden(1)<CR>
+n  gf          *@:<C-U>call <SNR>31_NetrwForceFile(1,<SNR>31_NetrwGetWord())<CR>
+n  gd          *@:<C-U>call <SNR>31_NetrwForceChgDir(1,<SNR>31_NetrwGetWord())<CR>
+n  gb           @<Plug>NetrwBookHistHandler_gb
+n  i           *@:<C-U>call <SNR>31_NetrwListStyle(1)<CR>
+n  mz          *@:<C-U>call <SNR>31_NetrwMarkFileCompress(1)<CR>
+n  mX          *@:<C-U>call <SNR>31_NetrwMarkFileExe(1,1)<CR>
+n  mx          *@:<C-U>call <SNR>31_NetrwMarkFileExe(1,0)<CR>
+n  mv          *@:<C-U>call <SNR>31_NetrwMarkFileVimCmd(1)<CR>
+n  mu          *@:<C-U>call <SNR>31_NetrwUnMarkFile(1)<CR>
