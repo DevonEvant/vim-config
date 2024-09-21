@@ -52,3 +52,4 @@ dofile_recursively(vim.fn.stdpath("config") .. "/lua/config/", function(_, file)
 	-- 如果是 Lua 文件，则加载
 	return file:match("%.lua$") and (not file:match("^[~%.]"))
 end)
+dofile(vim.fn.stdpath("config") .. "/lua/config/keymaps.lua")

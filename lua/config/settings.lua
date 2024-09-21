@@ -68,7 +68,8 @@ vim.o.clipboard = "unnamedplus"
 
 --當行出現底線
 --vim.opt.cursorline = true                          -- 启用当前行高亮显示
-vim.cmd("highlight CursorLine cterm=underline gui=underline") -- 设置底线样式
+-- vim.cmd("highlight CursorLine cterm=underline gui=underline") -- 设置底线样式
+vim.cmd("highlight CursorLine cterm=NONE gui=NONE") -- 设置底线样式
 
 -- 設置文件類型自動檢測和縮進
 vim.cmd("filetype plugin indent on")

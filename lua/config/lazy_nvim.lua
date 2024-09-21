@@ -18,8 +18,33 @@ require("lazy").setup({
 	spec = {
 		-- add LazyVim and import its plugins
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		--
+		{ import = "lazyvim.plugins.extras.coding.luasnip" },
+		{ import = "lazyvim.plugins.extras.coding.codeium" },
+		--
+		{ import = "lazyvim.plugins.extras.editor.fzf" },
+		--
+		{ import = "lazyvim.plugins.extras.lang.clangd" },
+		{ import = "lazyvim.plugins.extras.lang.cmake" },
+		{ import = "lazyvim.plugins.extras.lang.docker" },
+		{ import = "lazyvim.plugins.extras.lang.git" },
+		--
+		{ import = "lazyvim.plugins.extras.lang.markdown" },
+		--
+		{ import = "lazyvim.plugins.extras.lang.python" },
+		{ import = "lazyvim.plugins.extras.lang.rust" },
+		{ import = "lazyvim.plugins.extras.lang.typescript" },
+		--
+		{ import = "lazyvim.plugins.extras.lang.json" },
+		{ import = "lazyvim.plugins.extras.lang.toml" },
+		{ import = "lazyvim.plugins.extras.lang.yaml" },
 		-- import/override with your plugins
 		{ import = "plugins" },
+		{ import = "plugins.lang" },
+		{ import = "plugins.lang.sverilog" },
+		{ import = "plugins.lang.latex" },
+		{ import = "plugins.lazyvim-buildin" },
+		{ import = "plugins.tools" },
 		{ import = "plugins.ui" },
 	},
 	defaults = {
