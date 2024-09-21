@@ -18,7 +18,7 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		configs = function()
-			vim.lsp.set_log_level("OFF", "svlangserver")
+			vim.lsp.set_log_level("OFF")
 			--vim.lsp.set_log_level("TRACE")
 
 			require("mason").setup()

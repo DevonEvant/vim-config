@@ -84,3 +84,5 @@ vim.o.termguicolors = true
 vim.opt.concealcursor = ""
 -- vim.cmd("set conceallevel=0")
 -- vim.opt.conceallevel = 0
+
+vim.lsp.set_log_level("OFF")
