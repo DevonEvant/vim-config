@@ -80,8 +80,8 @@ map("v", "<C-x>", "d<Esc>i", {})
 map("i", "<C-v>", "<Esc>pi", {})
 
 -- Use <Tab> and <S-Tab> to navigate the completion list
-map("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
-map("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
+-- map("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
+-- map("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
 -- Use <Ctrl-F> to format documents with prettier
 -- vim.cmd('command! -nargs=0 Prettier :CocCommand prettier.formatFile')

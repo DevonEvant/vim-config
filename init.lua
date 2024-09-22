@@ -43,13 +43,13 @@ end
 -- require('theme')
 -- require('settings')
 
-dofile(vim.fn.stdpath("config") .. "/lua/config/lazy_nvim.lua")
-dofile_recursively(vim.fn.stdpath("config") .. "/lua/config/", function(_, file)
-	-- if filepath:match("%.lua$") then
-	-- local file_without_ext = filepath:gsub('%.lua$', '')
-	-- print("Loading file: " .. filepath)
-
-	-- 如果是 Lua 文件，则加载
-	return file:match("%.lua$") and (not file:match("^[~%.]"))
-end)
-dofile(vim.fn.stdpath("config") .. "/lua/config/keymaps.lua")
+require("config.lazy")
+-- dofile_recursively(vim.fn.stdpath("config") .. "/lua/config/", function(_, file)
+-- 	-- if filepath:match("%.lua$") then
+-- 	-- local file_without_ext = filepath:gsub('%.lua$', '')
+-- 	-- print("Loading file: " .. filepath)
+--
+-- 	-- 如果是 Lua 文件，则加载
+-- 	return file:match("%.lua$") and (not file:match("^[~%.]"))
+-- end)
+-- dofile(vim.fn.stdpath("config") .. "/lua/config/keymaps.lua")

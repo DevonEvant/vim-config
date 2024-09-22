@@ -14,8 +14,10 @@ return {
 			-- buffer
 			map("n", "th", "<cmd>BufferLineCyclePrev<CR>", {})
 			map("n", "tj", "<cmd>BufferLineCyclePrev<CR>", {})
+			map("n", "tN", "<cmd>BufferLineCyclePrev<CR>", {})
 			map("n", "tk", "<cmd>BufferLineCycleNext<CR>", {})
 			map("n", "tl", "<cmd>BufferLineCycleNext<CR>", {})
+			map("n", "tn", "<cmd>BufferLineCycleNext<CR>", {})
 			map("n", "t1", '<cmd>lua require("bufferline").go_to(1, true)<CR>', {})
 			map("n", "t2", '<cmd>lua require("bufferline").go_to(2, true)<CR>', {})
 			map("n", "t3", '<cmd>lua require("bufferline").go_to(3, true)<CR>', {})
