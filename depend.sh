@@ -23,3 +23,5 @@ pnpm install -g markdown-toc
 pnpm install -g markdownlint-cli2
 
 paru -S ueberzugpp
+
+paru -S verible
