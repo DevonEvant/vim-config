@@ -44,6 +44,7 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "plugins.lang" },
     { import = "plugins.lang.cpp" },
+    { import = "plugins.lang.csharp" },
     { import = "plugins.lang.sverilog" },
     { import = "plugins.lang.latex" },
     { import = "plugins.lazyvim-buildin" },
