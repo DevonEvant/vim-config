@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = "$USER/pyenv/bin/python3"
+-- vim.g.python3_host_prog = "$USER/pyenv/bin/python3"
 vim.cmd("set termguicolors")
 -- vim.cmd("set clipboard=unnamedplus")
 -- 設置自動縮進
